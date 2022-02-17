@@ -1,0 +1,7 @@
+Présentation de l'application
+ 
+Site édité par : Léa Nguyen, Tania Esteves, Mathieu Andriamiraho
+
+Projet étudiant réaliser dans le cadre d'un TP de développement mobile en deuxième année en DUT MMI.
+
+Les données récoltées lors de la naviguation ne sont pas gardés. Elles sont utilisés à des fin pédagogique
