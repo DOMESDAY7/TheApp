@@ -1,11 +1,11 @@
 import React from "react";
-import { View, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native-web";
 import logo from "../assets/logo.png";
 
 export default function Header() {
   return (
     <View style={styles.container}>
-      {/* <img src={logo} alt="logo Icon" /> */}
+      <img src={logo} alt="logo Icon" />
     </View>
   );
 }
