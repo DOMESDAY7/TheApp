@@ -14,7 +14,7 @@ export default function HeaderApp() {
 }
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
-const globalColor = "#111111";
+
 const styles = StyleSheet.create({
   container:{
     flex:1,
@@ -22,10 +22,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width:windowW,
     height:90,
-    backgroundColor:globalColor,
+    backgroundColor:"#000",
   },
   logo:{
-    flex:1,
+    flex:2,
     width:"30%",
 
     
