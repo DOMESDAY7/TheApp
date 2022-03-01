@@ -1,30 +1,35 @@
-import { StatusBar } from "expo-status-bar";
-import { View } from "react-native";
-import { SafeAreaView,StyleSheet } from "react-native";
-import Header from "./components/header";
-import Rdv from "./page/rdv";
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import React from "react";
+import {Text, View  } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
+import Constants from "expo-constants";
+
 import Accueil from "./components/accueil";
+// import { StatusBar } from "expo-status-bar";
+import Header from "./components/header";
+// import rdv from "./page/rdv";
+// import {NavigationContainer} from './react-navigation/native'; 
+// import {createNativeStackNavigator} from './react-navigation/native-stack';
 
 export default function App() {
-  const Stack = createNativeStackNavigator();
+  // const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="accueil" component={Accueil}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <View>
+      <Header />
+      <Accueil style={styles.accueil}/>
+    </View>
+  
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen name="accueil" component={accueil}/>
+    //   </Stack.Navigator>
+    // </NavigationContainer>
   );
 }
+
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
+  accueil:{
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor:"white",
-    
-    
-    
+    // backgroundColor:"white",
   }
 })
