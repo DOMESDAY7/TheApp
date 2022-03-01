@@ -1,15 +1,16 @@
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
-import { SafeAreaView,StyleSheet } from "react-native";
-import Header from "./components/header";
+import { SafeAreaView,StyleSheet,Text } from "react-native";
+import HeaderApp from "./components/headerApp";
+
 import Rdv from "./page/rdv";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-  <Header />
       <StatusBar />
-      <Rdv />
+        <HeaderApp />  
+        <Text style={{flex:8}}>Bonjour</Text>
     </SafeAreaView>
   );
 }
@@ -19,8 +20,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor:"white",
-    
-    
-    
   }
 })
