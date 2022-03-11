@@ -1,22 +1,22 @@
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
-import { Picker } from "@react-native-picker/picker";
-import {
-  SafeAreaView,
-  StyleSheet,
-
-  Dimensions,
-} from "react-native";
-import HeaderApp from "./components/headerApp";
+import { SafeAreaView,StyleSheet } from "react-native";
+import Header from "./components/header";
 import Rdv from "./page/rdv";
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Accueil from "./components/accueil";
+
+const Stack = createNativeStackNavigator();
 export default function App() {
  
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar />
-      <HeaderApp />
-      <Rdv />
-    </SafeAreaView>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="accueil" component={Accueil}/>
+        <Stack.Screen name="rendez-vous" component={Rdv}/>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 const globalColor = "#111111";

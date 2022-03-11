@@ -4,8 +4,10 @@ import { View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { Text, TextInput,StyleSheet,Dimensions } from "react-native";
 import { useState } from "react";
-export default function Rdv() {
-  const [prenom, setPrenom] = useState("");
+import DatePicker from "react-native-datepicker";
+
+export default function Rdv(){
+  const [prenom, setInput] = useState("");
   const [nom, setNom] = useState("");
   const [prestation, setPrestation] = useState("");
   const [demande, setDemande] = useState("");
