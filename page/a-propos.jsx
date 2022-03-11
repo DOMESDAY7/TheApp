@@ -14,13 +14,20 @@ function aPropos(){
     const [social,setSocial]=useState([]);
     useEffect(()=>{
         fetch('http://localhost/api.php?select=equipe_dev')
-            .then((res)=>console.log(res));
+            .then((res)=>setdev(res.data));
+        fetch('http://localhost/api.php?select=salon')
+            .then((res)=>setSocial(res.data));
     })
     const oneDev = (dev) => {
         <View>
             <Text>{dev.dev_prenom}</Text>
             <Text>{dev.dev_nom}</Text>
             <Text>{dev.dev_github}</Text>
+        </View>
+    }
+    const oneSocialMedia=(social)=>{
+        <View>
+            <Text>{social.facebook}</Text>
         </View>
     }
     return(
@@ -35,6 +42,11 @@ function aPropos(){
             keyExtractor={dev => dev.id_dev}
         />
         <Text>Nos réseaux</Text>
+        <FlatList
+            data={social}
+            renderItem={oneSocialMedia}
+            keyExtractor={social => social.id_salon}
+        />
         </SafeAreaView>
     )
 }
