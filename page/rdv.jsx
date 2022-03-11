@@ -10,7 +10,7 @@ import {
 import { useState } from "react";
 import DatePicker from "react-native-datepicker";
 
-const Rdv = () => {
+export default function Rdv(){
   const [prenom, setInput] = useState("");
   const [nom, setNom] = useState("");
   const [email, setEmail] = useState("");
