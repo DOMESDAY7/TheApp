@@ -9,6 +9,25 @@ export default function Rdv() {
   const [nom, setNom] = useState("");
   const [prestation, setPrestation] = useState("");
   const [demande, setDemande] = useState("");
+  function handleSubmit(){
+    let obj ={
+      prenom:prenom,
+      nom:nom,
+      prestation:prestation,
+      demande:demande
+    }
+    let url = "http://localhost/apiTheApp/index.php?select=salon";
+    fetch(url,{
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(obj),
+      method:"POST"
+    }).then(()=>{
+      console.log("c'est bon")
+    })
+    .catch((e)=>console.log(e))
+  }
   return (
     <View style={styles.containerForm}>
       <Text style={styles.title}>Bienvenue chez I.C.O.N !</Text>
@@ -44,7 +63,7 @@ export default function Rdv() {
       />
 
       <View style={styles.containerSubBtn}>
-        <TouchableOpacity style={styles.subBtn}>
+        <TouchableOpacity style={styles.subBtn} onClick={handleSubmit()}>
           <Text>Envoyer</Text>
         </TouchableOpacity>
       </View>

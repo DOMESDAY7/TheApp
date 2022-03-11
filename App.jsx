@@ -8,11 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import HeaderApp from "./components/headerApp";
-
 import Rdv from "./page/rdv";
-
-
-
 export default function App() {
  
   return (
