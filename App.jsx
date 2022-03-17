@@ -10,12 +10,13 @@ import Accueil from "./components/accueil";
 const Stack = createNativeStackNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="accueil" component={Accueil}/>
-        <Stack.Screen name="rendez-vous" component={Rdv}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen name="accueil" component={Accueil}/>
+    //     <Stack.Screen name="rendez-vous" component={Rdv}/>
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    <Rdv />
   );
 }
 const styles = StyleSheet.create({
