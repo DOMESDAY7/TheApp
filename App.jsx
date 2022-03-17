@@ -17,9 +17,9 @@ import Accueil from "./components/accueil";
 // import {NavigationContainer} from './react-navigation/native'; 
 // import {createNativeStackNavigator} from './react-navigation/native-stack';
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 export default function App() {
-  
+  return(
   <View style={styles.container}>
       {/* <Image
         style={styles.logo}
@@ -28,6 +28,7 @@ export default function App() {
       <Accueil style={styles.accueil}/>
 
     </View>
+  )
 }
 
 const globalColor = "#111111";
