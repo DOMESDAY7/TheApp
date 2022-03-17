@@ -1,126 +1,131 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  SafeAreaView,
-  TextInput,
-  Button,
-} from "react-native";
+import React from "react";
+import { TouchableOpacity } from "react-native";
+import { View } from "react-native";
+import { Picker } from "@react-native-picker/picker";
+import { Text, TextInput,StyleSheet,Dimensions} from "react-native";
+// import { useWindowDimensions } from 'react-native';
 import { useState } from "react";
-import DatePicker from "react-native-datepicker";
 
+const windowW = Dimensions.get("window").width;
+const windowH = Dimensions.get("window").height;
 export default function Rdv(){
   const [prenom, setInput] = useState("");
   const [nom, setNom] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setmessage] = useState(false);
-  const [date, setDate] = useState(new Date());
-  function changePrenom(event) {
-    setInput(event.currentTarget.value);
-  }
-  function changeNom(event) {
-    setNom(event.currentTarget.value);
-  }
-  function changeEmail(event) {
-    setEmail(event.currentTarget.value);
-  }
-  function sendData() {
-    fetch("", {
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prenom: prenom, nom: nom, email: email }),
-    }).then(setmessage(true));
+  const [prestation, setPrestation] = useState("");
+  const [demande, setDemande] = useState("");
+  function handleSubmit(){
+    // const { windowH, windowW } = useWindowDimensions();
+    let obj ={
+      prenom:prenom,
+      nom:nom,
+      prestation:prestation,
+      demande:demande
+    }
+    let url = "http://localhost/apiTheApp/index.php?select=salon";
+    fetch(url,{
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(obj),
+      method:"POST"
+    }).then(()=>{
+      console.log("c'est bon")
+    })
+    .catch((e)=>console.log(e))
   }
   return (
-    <View>
-      <View style={styles.container}>
-        <Text>l'image sera là</Text>
+    <View style={styles.containerForm}>
+      <Text style={styles.title}>Bienvenue chez I.C.O.N !</Text>
+      <TextInput
+        value={nom}
+        onChangeText={setNom}
+        style={styles.input}
+        placeholder="Nom"
+      />
+      <TextInput
+        value={prenom}
+        onChangeText={setPrenom}
+        style={styles.input}
+        placeholder="Prénom"
+      />
 
-        <TextInput
-          value={prenom}
-          style={styles.input}
-          onChange={changePrenom}
-          placeholder="Prenom"
-        />
-        <TextInput
-          value={nom}
-          style={styles.input}
-          onChange={changeNom}
-          placeholder="Nom"
-        />
-        <TextInput
-          value={email}
-          style={styles.input}
-          onChange={changeEmail}
-          placeholder="Email"
-          autoComplete="email"
-        />
-        {/* <TextInput value={prenom} style={styles.input} onChange={changeInput} placeholder="Prenom"/> */}
-        <DatePicker
-          style={{ width: 200 }}
-          date={date}
-          mode="date"
-          placeholder="select date"
-          format="YYYY-MM-DD"
-          minDate="2016-05-01"
-          maxDate="2016-06-01"
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          customStyles={{
-            dateIcon: {
-              position: "absolute",
-              left: 0,
-              top: 4,
-              marginLeft: 0,
-            },
-            dateInput: {
-              marginLeft: 36,
-            },
-            // ... You can check the source to find the other keys.
-          }}
-        />
-        <Button
-          title="Prendre rendez-vous"
-          style={styles.subBtn}
-          onClick={sendData}
-        />
-        <Text>
-          {message == false
-            ? ""
-            : "Votre rendez vous est pris, un email de confirmation vous a été envoyé"}
-        </Text>
+      <Picker
+        selectedValue={prestation}
+        onValueChange={(itemValue, itemIndex) => setPrestation(itemValue)}
+        style={styles.input}
+      >
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+      </Picker>
+
+      <TextInput
+        value={demande}
+        onChangeText={setDemande}
+        style={styles.textarea}
+        placeholder="Demande"
+        multiline={true}
+        numberOfLines={4}
+      />
+  
+      <View style={styles.containerSubBtn}>
+        <TouchableOpacity style={styles.subBtn} onClick={handleSubmit()}>
+          <Text>Envoyer</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
+const globalColor = "#111111";
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  containerSubBtn: {
+    flex: 5,
+  },
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+    color: "white",
+    marginVertical: "5%",
   },
   subBtn: {
-    backgroundColor: "red",
-    width: 2000,
-    height: 100,
+    borderWidth: 1,
+    backgroundColor: "white",
+    paddingHorizontal: 30,
+    paddingVertical: 15,
+    borderRadius: 10,
+    fontSize:70
   },
-  img: {
-    width: 100,
-    height: 100,
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
+    width: windowW,
   },
   input: {
-    borderWidth:1,
-    padding:10,
-    
-    width:100,
-    borderRadius:10,
-    shadowColor: '#171717',
-    shadowOffset: {width: -2, height: 4},
-    shadowOpacity: 0.2,
-    shadowRadius: 3,
-   
+    flex: 1,
+    borderRadius: 10,
+    backgroundColor: "white",
+    padding: 10,
+    marginBottom: 10,
+    width: "80%",
+    textAlign: "center",
+    fontSize: 15,
+    borderWidth: 1,
+  },
+  textarea: {
+    flex: 5,
+    borderWidth: 1,
+    width: "80%",
+    borderRadius: 10,
+    marginBottom: 10,
+    backgroundColor: "white",
+    padding: 10,
+  },
+  containerForm: {
+    backgroundColor: globalColor,
+    flex: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    width: windowW,
   },
 });
-
-export default Rdv;

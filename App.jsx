@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
-import { SafeAreaView,StyleSheet } from "react-native";
+import { SafeAreaView,StyleSheet,Dimensions } from "react-native";
 import Header from "./components/header";
 import Rdv from "./page/rdv";
 import {NavigationContainer} from '@react-navigation/native';
@@ -9,6 +9,7 @@ import Accueil from "./components/accueil";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
+ 
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -18,14 +19,17 @@ export default function App() {
     </NavigationContainer>
   );
 }
+const globalColor = "#111111";
+const windowW = Dimensions.get("window").width;
+const windowH = Dimensions.get("window").height;
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
+
+  container: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor:"white",
-    
-    
-    
-  }
-})
+    backgroundColor: "white",
+    width: windowW,
+  },
+ 
+});
