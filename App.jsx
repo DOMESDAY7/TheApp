@@ -1,7 +1,7 @@
-import aPropos from "./page/a-propos"
+import APropos from './page/APropos';
 
 export default function App() {
   return (
-    <aPropos/>
+    <APropos/>
   );
 }

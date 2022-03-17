@@ -6,7 +6,7 @@ import {
   } from "react-native";
 import { useEffect, useState } from "react";
 
-function aPropos(){
+function APropos(){
     const [dev,setdev]=useState([]);
     const [social,setSocial]=useState([]);
     useEffect(()=>{
@@ -48,4 +48,4 @@ function aPropos(){
     )
 }
 
-export default aPropos;
+export default APropos;
