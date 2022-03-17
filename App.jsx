@@ -3,9 +3,11 @@ import { View } from "react-native";
 import { SafeAreaView,StyleSheet,Dimensions } from "react-native";
 import Header from "./components/header";
 import Rdv from "./page/rdv";
+import headerApp from "./components/headerApp";
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Accueil from "./components/accueil";
+import HeaderApp from "./components/headerApp";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -17,7 +19,9 @@ export default function App() {
     //     <Stack.Screen name="rendez-vous" component={Rdv}/>
     //   </Stack.Navigator>
     // </NavigationContainer>
-    <Rdv />
+   
+      <Rdv/>
+   
   );
 }
 const globalColor = "#111111";

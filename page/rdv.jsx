@@ -2,37 +2,40 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { Text, TextInput,StyleSheet,Dimensions} from "react-native";
+import { Text, TextInput, StyleSheet, Dimensions } from "react-native";
 // import { useWindowDimensions } from 'react-native';
 import { useState } from "react";
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
-export default function Rdv(){
-  // const [prenom, setInput] = useState("");
+export default function Rdv() {
   const [nom, setNom] = useState("");
+  const [mail, setMail] = useState("");
   const [prestation, setPrestation] = useState("");
   const [demande, setDemande] = useState("");
   const [prenom, setPrenom] = useState("");
-  function handleSubmit(){
+  function handleSubmit() {
     // const { windowH, windowW } = useWindowDimensions();
-    let obj ={
-      prenom:prenom,
-      nom:nom,
-      prestation:prestation,
-      demande:demande
-    }
-    let url = "http://localhost/apiTheApp/index.php?select=salon";
-    fetch(url,{
-      headers:{
-        "Content-Type":"application/json"
+
+    let obj = {
+      prenom: prenom,
+      nom: nom,
+      prestation: prestation,
+      demande: demande,
+      mail: mail,
+    };
+    let url = "http://172.24.140.187/apiTheApp/index.php?send=rdv";
+    fetch(url, {
+      headers: {
+        "Content-Type": "application/json",
       },
-      body:JSON.stringify(obj),
-      method:"POST"
-    }).then(()=>{
-      console.log("c'est bon")
+      body: JSON.stringify(obj),
+      method: "POST",
     })
-    .catch((e)=>console.log(e))
+      .then(() => {
+        console.log("c'est bon");
+      })
+      .catch((e) => console.log(e));
   }
   return (
     <View style={styles.containerForm}>
@@ -48,6 +51,12 @@ export default function Rdv(){
         onChangeText={setPrenom}
         style={styles.input}
         placeholder="Prénom"
+      />
+      <TextInput
+        value={mail}
+        onChangeText={setMail}
+        style={styles.input}
+        placeholder="mail"
       />
 
       <Picker
@@ -67,15 +76,15 @@ export default function Rdv(){
         multiline={true}
         numberOfLines={4}
       />
-  
+
       <View style={styles.containerSubBtn}>
-        <TouchableOpacity style={styles.subBtn} onClick={handleSubmit()}>
+        <TouchableOpacity style={styles.subBtn} onPress={()=>{handleSubmit()}}>
           <Text>Envoyer</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
-};
+}
 const globalColor = "#111111";
 const styles = StyleSheet.create({
   containerSubBtn: {
@@ -93,13 +102,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     paddingVertical: 15,
     borderRadius: 10,
-    fontSize:70
+    fontSize: 70,
   },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
+    height:windowH,
     width: windowW,
   },
   input: {

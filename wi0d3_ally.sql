@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.6
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Hôte : wi0d3.myd.infomaniak.com
--- Généré le :  mar. 01 mars 2022 à 09:17
--- Version du serveur :  10.4.19-MariaDB-1:10.4.19+maria~stretch-log
--- Version de PHP :  7.4.27
+-- Hôte : 127.0.0.1
+-- Généré le : jeu. 17 mars 2022 à 15:27
+-- Version du serveur : 10.4.22-MariaDB
+-- Version de PHP : 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `wi0d3_ally`
+-- Base de données : `wi0d3_ally`
 --
 
 -- --------------------------------------------------------
@@ -70,6 +69,13 @@ CREATE TABLE `message` (
   `msg_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `message` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `message`
+--
+
+INSERT INTO `message` (`id_message`, `msg_email`, `msg_nom`, `msg_prenom`, `msg_date`, `message`) VALUES
+(1, 't', 't', 't', '2022-03-17 13:37:58', 't');
 
 -- --------------------------------------------------------
 
@@ -135,20 +141,22 @@ CREATE TABLE `rel_prest_msg` (
 --
 
 CREATE TABLE `salon` (
-  `salon_nom` varchar(100) NOT NULL,
-  `logo` varchar(255) NOT NULL,
-  `salon_telephone` int(11) NOT NULL,
-  `salon_adresse` varchar(255) NOT NULL,
-  `horaires` varchar(100) NOT NULL,
-  `facebook` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `value` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `salon`
 --
 
-INSERT INTO `salon` (`salon_nom`, `logo`, `salon_telephone`, `salon_adresse`, `horaires`, `facebook`) VALUES
-('ICON Paris', 'https://static.wixstatic.com/media/827e6d_070e6be94fc84d4a98fa18b96cc40b1e~mv2.jpg/v1/fill/w_249,h_150,al_c,q_80,usm_0.66_1.00_0.01/LOGO-FOND-NOIR-RECA.webp', 140790018, '13 Villa Saint Michel, Paris, 75018', '9h-18h', 'https://www.facebook.com/lesaloniconparis');
+INSERT INTO `salon` (`id`, `name`, `value`) VALUES
+(1, 'salon_nom', 'ICON Paris'),
+(2, 'logo', 'https://static.wixstatic.com/media/827e6d_070e6be94fc84d4a98fa18b96cc40b1e~mv2.jpg/v1/fill/w_249,h_150,al_c,q_80,usm_0.66_1.00_0.01/LOGO-FOND-NOIR-RECA.webp'),
+(3, 'salon_telephone', '140790018'),
+(4, 'salon_adresse', '13 Villa Saint Michel, Paris, 75018'),
+(5, 'horaires', '9h-18h'),
+(6, 'facebook', 'https://www.facebook.com/lesaloniconparis');
 
 --
 -- Index pour les tables déchargées
@@ -188,7 +196,7 @@ ALTER TABLE `prestations`
 -- Index pour la table `salon`
 --
 ALTER TABLE `salon`
-  ADD PRIMARY KEY (`salon_nom`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -210,7 +218,7 @@ ALTER TABLE `mentions_legales`
 -- AUTO_INCREMENT pour la table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `photos_salon`
@@ -223,6 +231,12 @@ ALTER TABLE `photos_salon`
 --
 ALTER TABLE `prestations`
   MODIFY `id_prestation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `salon`
+--
+ALTER TABLE `salon`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
