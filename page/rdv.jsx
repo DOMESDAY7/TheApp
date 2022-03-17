@@ -2,16 +2,19 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { Text, TextInput,StyleSheet,Dimensions } from "react-native";
+import { Text, TextInput,StyleSheet,Dimensions} from "react-native";
+// import { useWindowDimensions } from 'react-native';
 import { useState } from "react";
-import DatePicker from "react-native-datepicker";
 
+const windowW = Dimensions.get("window").width;
+const windowH = Dimensions.get("window").height;
 export default function Rdv(){
   const [prenom, setInput] = useState("");
   const [nom, setNom] = useState("");
   const [prestation, setPrestation] = useState("");
   const [demande, setDemande] = useState("");
   function handleSubmit(){
+    // const { windowH, windowW } = useWindowDimensions();
     let obj ={
       prenom:prenom,
       nom:nom,
@@ -63,7 +66,7 @@ export default function Rdv(){
         multiline={true}
         numberOfLines={4}
       />
-
+  
       <View style={styles.containerSubBtn}>
         <TouchableOpacity style={styles.subBtn} onClick={handleSubmit()}>
           <Text>Envoyer</Text>
@@ -73,8 +76,6 @@ export default function Rdv(){
   );
 };
 const globalColor = "#111111";
-const windowW = Dimensions.get("window").width;
-const windowH = Dimensions.get("window").height;
 const styles = StyleSheet.create({
   containerSubBtn: {
     flex: 5,
