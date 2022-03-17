@@ -19,7 +19,7 @@ import Accueil from "./components/accueil";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
-  
+  return(
   <View style={styles.container}>
       {/* <Image
         style={styles.logo}
@@ -27,7 +27,9 @@ export default function App() {
       /> */}
       <Accueil style={styles.accueil}/>
 
+
     </View>
+  )
 }
 
 const globalColor = "#111111";
