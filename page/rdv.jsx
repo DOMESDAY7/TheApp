@@ -5,6 +5,7 @@ import { Picker } from "@react-native-picker/picker";
 import { Text, TextInput,StyleSheet,Dimensions} from "react-native";
 // import { useWindowDimensions } from 'react-native';
 import { useState } from "react";
+import Navbar from "../components/navbar";
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
@@ -73,6 +74,7 @@ export default function Rdv(){
           <Text>Envoyer</Text>
         </TouchableOpacity>
       </View>
+      <Navbar/>
     </View>
   );
 };

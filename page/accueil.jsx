@@ -1,10 +1,14 @@
 import React from "react";
 import {Text, View, Image, StyleSheet, SafeAreaView, Dimensions } from "react-native";
+import HeaderApp from "../components/headerApp";
+import Navbar from "../components/navbar";
 
 export default function Accueil() {
 return(
         
-<SafeAreaView style={styles.container}>
+<SafeAreaView style={styles.contain_accueil}>
+    
+    <HeaderApp/>
     <Image style={styles.imageHeader} source={{
         uri: 'https://cdn1.treatwell.net/images/view/v2.i2500346.w720.h480.x122C1F52/',
       }} />
@@ -19,7 +23,7 @@ return(
         Grâce à la technologie I.C.O.N., nous garantissons des résultats spectaculaires en matière de traitement et de
         coloration, aussi bien pour les femmes que pour les hommes.</Text>
     </View>
-    
+    <Navbar/>
 </SafeAreaView>
 );
 }
@@ -27,33 +31,27 @@ return(
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 const styles = StyleSheet.create({
-container: {
-flex: 1,
-justifyContent: 'center',
-alignItems:'center',
-// borderWidth: 1,
-},
-imageHeader: {
-flex:2,
-width: windowW,
-height: 50,
-},
-containerTexte:{
-    flex: 8,
-    width: '80%',
-    marginRight: 'auto',
-    marginLeft:'auto',
-    marginTop: '20px',
-    // borderWidth: 1,
-},
-titre: {
-// flex: 2,
-fontWeight: 'bold',
-textAlign: 'center',
-fontSize: 20,
-},
-// texte:{
-// flex: 6,
-// },
-
-});
+    contain_accueil: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems:'center',
+    },
+    imageHeader: {
+        flex:2,
+        width: windowW,
+        height: 50,
+    },
+    containerTexte:{
+        flex: 8,
+        width: '80%',
+        marginRight: 'auto',
+        marginLeft:'auto',
+        marginTop: 20
+    },
+    titre: {
+    // flex: 2,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        fontSize: 20
+    }
+    });

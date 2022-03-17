@@ -8,8 +8,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Constants from "expo-constants";
 import Header from "./components/header";
+import Accueil from "./page/accueil";
+import HeaderApp from "./components/headerApp";
 import Rdv from "./page/rdv";
-import Accueil from "./components/accueil";
 
 // import { StatusBar } from "expo-status-bar";
 // import Header from "./components/header";
@@ -19,17 +20,20 @@ import Accueil from "./components/accueil";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
-  return(
-  <View style={styles.container}>
-      {/* <Image
-        style={styles.logo}
-        source={require('../assets/logo.png')}
-      /> */}
-      <Accueil style={styles.accueil}/>
-
-
-    </View>
-  )
+  const Stack = createNativeStackNavigator();
+  return (
+    <NavigationContainer>
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+      style={styles.container}
+    >
+        <Stack.Screen name="accueil" component={Accueil}/>
+        <Stack.Screen name="rdv" component={Rdv}/>
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
 const globalColor = "#111111";
@@ -44,5 +48,3 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   }
 })
-
-
