@@ -1,4 +1,4 @@
-import aPropos from "./page/a-propos";
+import aPropos from "./page/a-propos"
 
 export default function App() {
   return (

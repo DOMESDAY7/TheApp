@@ -2,10 +2,7 @@ import {
     StyleSheet,
     Text,
     View,
-    Image,
     SafeAreaView,
-    TextInput,
-    Button,
   } from "react-native";
 import { useEffect, useState } from "react";
 
