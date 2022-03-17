@@ -20,18 +20,14 @@ import Accueil from "./components/accueil";
 const Stack = createNativeStackNavigator();
 export default function App() {
   
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name="accueil" component={accueil}/>
-    //   </Stack.Navigator>
-    // </NavigationContainer>
+  <View style={styles.container}>
+      {/* <Image
+        style={styles.logo}
+        source={require('../assets/logo.png')}
+      /> */}
+      <Accueil style={styles.accueil}/>
 
-<NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="accueil" component={Accueil}/>
-        <Stack.Screen name="rendez-vous" component={Rdv}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    </View>
 }
 
 const globalColor = "#111111";
