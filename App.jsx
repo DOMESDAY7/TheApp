@@ -11,19 +11,7 @@ import Accueil from "./components/accueil";
 // import {createNativeStackNavigator} from './react-navigation/native-stack';
 
 export default function App() {
-  // const Stack = createNativeStackNavigator();
-  return (
-    <View style={styles.container}>
-      {/* <Header/> */}
-      <Accueil style={styles.accueil}/>
-    </View>
   
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name="accueil" component={accueil}/>
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-  );
 }
 
 const styles = StyleSheet.create({
@@ -33,11 +21,4 @@ const styles = StyleSheet.create({
     alignItems:'center',
     borderWidth: 1,
   }
-  // accueil:{
-  //   flex:1,
-  //   alignItems: "center",
-  //   justifyContent: "center",
-  //   // backgroundColor:"white",
-  //   width: '100%',
-  // }
 })
