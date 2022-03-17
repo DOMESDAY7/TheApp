@@ -9,10 +9,11 @@ import { useState } from "react";
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 export default function Rdv(){
-  const [prenom, setInput] = useState("");
+  // const [prenom, setInput] = useState("");
   const [nom, setNom] = useState("");
   const [prestation, setPrestation] = useState("");
   const [demande, setDemande] = useState("");
+  const [prenom, setPrenom] = useState("");
   function handleSubmit(){
     // const { windowH, windowW } = useWindowDimensions();
     let obj ={
