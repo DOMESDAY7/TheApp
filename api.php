@@ -6,6 +6,7 @@ $db = new PDO('mysql:host=localhost;dbname=wi0d3_ally', 'root', '', array(PDO::M
 // ─── POST INFORMATION ───────────────────────────────────────────────────────────
 //
 $data_receive = json_decode(file_get_contents("php://input"),true);
+
 // ────────────────────────────────────────────────────────────────────────────────
 
 //

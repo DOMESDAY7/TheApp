@@ -22,7 +22,7 @@ export default function Rdv() {
       nom: nom,
       prestation: prestation,
       demande: demande,
-      mail: mail,
+      mail: mail
     };
     let url = "http://172.24.140.187/apiTheApp/index.php?send=rdv";
     fetch(url, {
