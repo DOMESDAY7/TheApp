@@ -5,6 +5,7 @@ import { SafeAreaView,StyleSheet,Dimensions } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Constants from "expo-constants";
 import Header from "./components/header";
@@ -14,17 +15,13 @@ import Rdv from "./page/rdv";
 const Stack = createNativeStackNavigator();
 export default function App() {
   const Stack = createNativeStackNavigator();
+  const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-      style={styles.container}
-    >
-        <Stack.Screen name="accueil" component={Accueil}/>
-        <Stack.Screen name="rdv" component={Rdv}/>
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Accueil" component={Accueil} />
+        <Tab.Screen name="RDV" component={Rdv} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }

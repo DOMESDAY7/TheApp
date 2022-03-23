@@ -1,7 +1,6 @@
 import React from "react";
 import {Text, View, Image, StyleSheet, SafeAreaView, Dimensions } from "react-native";
 import HeaderApp from "../components/headerApp";
-import Navbar from "../components/navbar";
 
 export default function Accueil() {
 return(
@@ -23,7 +22,6 @@ return(
         Grâce à la technologie I.C.O.N., nous garantissons des résultats spectaculaires en matière de traitement et de
         coloration, aussi bien pour les femmes que pour les hommes.</Text>
     </View>
-    <Navbar/>
 </SafeAreaView>
 );
 }
