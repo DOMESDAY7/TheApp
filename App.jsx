@@ -10,6 +10,7 @@ import Constants from "expo-constants";
 import Header from "./components/header";
 import Rdv from "./page/rdv";
 import Accueil from "./components/accueil";
+import APropos from "./page/APropos";
 
 // import { StatusBar } from "expo-status-bar";
 // import Header from "./components/header";
@@ -25,7 +26,9 @@ export default function App() {
         style={styles.logo}
         source={require('../assets/logo.png')}
       /> */}
-      <Accueil style={styles.accueil}/>
+      {/* <Accueil style={styles.accueil}/> */}
+
+      <APropos></APropos>
 
     </View>
   )
