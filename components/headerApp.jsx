@@ -1,6 +1,5 @@
 import React from "react";
 import { View, StyleSheet, Dimensions,Image,Text } from "react-native";
-import logo from "../assets/logo.png";
 
 export default function HeaderApp() {
   return (

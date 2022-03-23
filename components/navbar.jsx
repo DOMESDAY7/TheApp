@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import { Button, StyleSheet, View, Dimensions } from "react-native";
 
 const Navbar = ({ navigation }) => {

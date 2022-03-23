@@ -9,14 +9,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Constants from "expo-constants";
 import Header from "./components/header";
 import Accueil from "./page/accueil";
-import HeaderApp from "./components/headerApp";
 import Rdv from "./page/rdv";
-
-// import { StatusBar } from "expo-status-bar";
-// import Header from "./components/header";
-// import rdv from "./page/rdv";
-// import {NavigationContainer} from './react-navigation/native'; 
-// import {createNativeStackNavigator} from './react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 export default function App() {
