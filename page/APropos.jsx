@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image } from "react-native";
 import { useEffect, useState, useCallback } from "react";
 
 function APropos() {
@@ -13,7 +14,7 @@ function APropos() {
         // console.log(data);
         setdev(
             data.map((dev) => {
-              return <View style = {styles.dev}>
+              return <View>
                   <Text style = {styles.devinfo}> {dev.dev_prenom} - {dev.dev_nom} - {dev.github}</Text>
               </View>;
             })
@@ -29,13 +30,13 @@ function APropos() {
       });
     
   }, []);
-  const oneDev = (dev) => {
-    <View>
-      <Text>{dev.dev_prenom}</Text>
-      <Text>{dev.dev_nom}</Text>
-      <Text>{dev.dev_github}</Text>
-    </View>;
-  };
+  // const oneDev = (dev) => {
+  //   <View>
+  //     <Text>{dev.dev_prenom}</Text>
+  //     <Text>{dev.dev_nom}</Text>
+  //     <Text>{dev.dev_github}</Text>
+  //   </View>;
+  // };
 
   const supportedURL = "https://www.facebook.com/lesaloniconparis";
   const OpenURLButton = ({ url, children }) => {
@@ -52,7 +53,9 @@ function APropos() {
       }
     }, [url]);
   
-    return <TouchableOpacity style = {styles.reseau} onPress={handlePress}><Text title={children}>Facebook</Text>
+    return <TouchableOpacity onPress={handlePress}>
+      <Image style={styles.tinyLogo}
+      source={{uri:'https://www.meilleure-innovation.com/wp-content/uploads/2021/11/1200px-facebook-logo-2019-1024x1024.png'}}/>
     </TouchableOpacity>;
   };
   // const oneSocialMedia = (social) => {
@@ -77,13 +80,14 @@ function APropos() {
         <Text>Contactez-nous</Text>
       </TouchableOpacity>
       <Text style = {styles.soustitre}>L'équipe de développeurs</Text>
-      <View>{dev}</View>
+      <View style = {styles.dev}>{dev}</View>
       {/* <FlatList
         data={dev}
         renderItem={oneDev}
         keyExtractor={(dev) => dev.id_dev}
       /> */}
       <Text style = {styles.soustitre}>Rejoignez-nous !</Text>
+      
       <OpenURLButton url={supportedURL} style={styles.lien}>Open Supported URL</OpenURLButton>
 
       {/* <FlatList
@@ -121,7 +125,7 @@ const styles= StyleSheet.create({
     fontSize:16,
   },
   contact:{
-    flex:1,
+    // flex:1,
     backgroundColor:"white",
     alignSelf: "flex-start",
     padding:10,
@@ -134,33 +138,22 @@ const styles= StyleSheet.create({
     color:"white",
     fontSize: 18,
     fontWeight:"bold",
+    marginTop: 30,
   },
   dev:{
-    // flex:1,
-    display:"flex",
-    alignSelf: "flex-start",
+    flex:1,
   },
   devinfo:{
     // flex:1,
     color:"white",
   },
-  reseau:{
-    // flex:1,
-    // color:"white",
-    width:90,
-    height:90,
-    backgroundColor:"white",
-    borderRadius:50,
-  },
   lien:{
     flex:1,
-  }
-  // allDev:{
-  //   flex:1,
-  //   flexDirection:"column"
-  // },
-
-    
+  },
+  tinyLogo: {
+    width: 50,
+    height: 50,
+  },
 })
 
 export default APropos;
