@@ -3,20 +3,37 @@ import { TouchableOpacity } from "react-native";
 import { View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { Text, TextInput, StyleSheet, Dimensions } from "react-native";
+import { useEffect } from "react/cjs/react.development";
 // import { useWindowDimensions } from 'react-native';
 import { useState } from "react";
+import { Root, Popup } from 'react-native-popup-confirm-toast'
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
 export default function Rdv() {
   const [nom, setNom] = useState("");
   const [mail, setMail] = useState("");
-  const [prestation, setPrestation] = useState("");
+  const [prestation, setPrestation] = useState("1");
   const [demande, setDemande] = useState("");
   const [prenom, setPrenom] = useState("");
+  const [allPrestation, setAllPrestation] = useState([]);
+  useEffect(() => {
+    fetch("http://192.168.140.239/apiTheApp/index.php?select=prestations")
+    .then(resp=>resp.json())
+    .then(data=>{
+      
+      setAllPrestation(data.map((prestation)=>{
+        return <Picker.Item label={prestation.prest_nom} value={prestation.id_prestation} />
+      }))
+    
+    })
+    
+    
+  }, []);
+
   function handleSubmit() {
     // const { windowH, windowW } = useWindowDimensions();
-
+    console.log("sub")
     let obj = {
       prenom: prenom,
       nom: nom,
@@ -24,7 +41,7 @@ export default function Rdv() {
       demande: demande,
       mail: mail
     };
-    let url = "http://172.24.140.187/apiTheApp/index.php?send=rdv";
+    let url = "http://192.168.140.239/apiTheApp/index.php?send=rdv";
     fetch(url, {
       headers: {
         "Content-Type": "application/json",
@@ -61,11 +78,12 @@ export default function Rdv() {
 
       <Picker
         selectedValue={prestation}
-        onValueChange={(itemValue, itemIndex) => setPrestation(itemValue)}
+        onValueChange={(itemValue, itemIndex) => setPrestation({itemValue})}
         style={styles.input}
       >
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
+        {/* <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" /> */}
+        {allPrestation}
       </Picker>
 
       <TextInput
@@ -82,7 +100,26 @@ export default function Rdv() {
           <Text>Envoyer</Text>
         </TouchableOpacity>
       </View>
+      <Root>
+    <View>
+        <TouchableOpacity
+            onPress={() =>
+              Popup.show({
+                type: 'success',
+                title: 'Dikkat!',
+                textBody: 'Mutlak özgürlük, kendi başına hiçbir anlam ifade etmez. ',
+                buttonText: 'Tamam',
+                callback: () => Popup.hide()
+              })
+            }
+        >
+            <Text>Open Popup Message</Text>
+        </TouchableOpacity>
     </View>
+</Root>
+
+    </View>
+    
   );
 }
 const globalColor = "#111111";
