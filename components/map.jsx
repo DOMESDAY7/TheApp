@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image, ScrollView } from "react-native";
 import { useEffect, useState, useCallback } from "react";
-import MapView from "react-native-maps";
+import MapView from 'react-native-maps';
 import { Dimensions } from 'react-native';
 
 const windowWidth = Dimensions.get('window').width;

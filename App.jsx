@@ -28,7 +28,8 @@ export default function App() {
       /> */}
       {/* <Accueil style={styles.accueil}/> */}
 
-      <APropos></APropos>
+      <APropos/>
+
 
     </View>
   )

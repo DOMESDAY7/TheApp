@@ -160,7 +160,9 @@ width: 50,
 height: 50,
 },
 map:{
-  flex:5,
+  // Régler problème flex
+  height:"10px",
+  width:"10px",
 }
 })
 
