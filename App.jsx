@@ -8,6 +8,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Accueil from "./components/accueil";
 import HeaderApp from "./components/headerApp";
+import Contact from "./page/contact";
 
 const Stack = createNativeStackNavigator();
 export default function App() {
@@ -20,7 +21,7 @@ export default function App() {
     //   </Stack.Navigator>
     // </NavigationContainer>
    
-      <Rdv/>
+      <Contact/>
    
   );
 }
