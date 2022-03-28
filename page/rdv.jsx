@@ -6,11 +6,7 @@ import { Text, TextInput, StyleSheet, Dimensions } from "react-native";
 import { useEffect } from "react/cjs/react.development";
 // import { useWindowDimensions } from 'react-native';
 import { useState } from "react";
-<<<<<<< HEAD
 import { Root, Popup } from 'react-native-popup-confirm-toast'
-=======
-import Navbar from "../components/navbar";
->>>>>>> navbar
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
@@ -104,7 +100,6 @@ export default function Rdv() {
           <Text>Envoyer</Text>
         </TouchableOpacity>
       </View>
-<<<<<<< HEAD
       <Root>
     <View>
         <TouchableOpacity
@@ -123,9 +118,6 @@ export default function Rdv() {
     </View>
 </Root>
 
-=======
-      <Navbar/>
->>>>>>> navbar
     </View>
     
   );
