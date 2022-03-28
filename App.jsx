@@ -10,6 +10,7 @@ import Constants from "expo-constants";
 import Header from "./components/header";
 import Rdv from "./page/rdv";
 import Accueil from "./components/accueil";
+import HeaderApp from "./components/headerApp";
 
 // import { StatusBar } from "expo-status-bar";
 // import Header from "./components/header";

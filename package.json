@@ -18,7 +18,12 @@
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-native": "0.64.3",
+<<<<<<< HEAD
     "react-native-web": "0.17.1"
+=======
+    "react-native-popup-confirm-toast": "^2.0.7",
+    "react-native-status-bar-height": "^2.6.0"
+>>>>>>> rdv
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
