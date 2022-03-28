@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Feather from 'react-native-vector-icons/Feather';
 import Accueil from "./page/accueil";
 import Rdv from "./page/rdv";
 import APropos from "./page/APropos";
@@ -21,7 +22,7 @@ export default function App() {
       initialRouteName="Accueil"
       screenOptions={{
         tabBarActiveBackgroundColor: '#000',
-        tabBarInactiveBackgroundColor: '#000',
+        tabBarInactiveBackgroundColor: '#000'
       }}>
         {/* Buttons of menu */}
         <Tab.Screen name="Accueil" component={Accueil} 
@@ -29,7 +30,7 @@ export default function App() {
           tabBarLabel: "Accueil",
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home-variant-outline" color={"#fff"} size={size*1.7} />
+            <Feather name="home" color="#fff" size={size*1.7} />
           ),
         }}/>
         <Tab.Screen name="RDV" component={Rdv} 
@@ -37,7 +38,7 @@ export default function App() {
           tabBarLabel: "RDV",
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="calendar-blank-outline" color={"#fff"} size={size*1.5}/>
+            <Feather name="calendar" color="#fff" size={size*1.5}/>
           ),
         }}/>
         <Tab.Screen name="A propos" component={APropos} 
@@ -45,7 +46,7 @@ export default function App() {
           tabBarLabel: "A propos",
           tabBarShowLabel: false,
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="information-outline" color={"#fff"} size={size*1.7} />
+            <MaterialCommunityIcons name="information-outline" color="#fff" size={size*1.7} />
           ),
         }}/>
       </Tab.Navigator>
