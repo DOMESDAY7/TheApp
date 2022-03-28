@@ -11,7 +11,7 @@ import Accueil from "./page/accueil";
 import Rdv from "./page/rdv";
 import APropos from "./page/APropos";
 
-const Stack = createNativeStackNavigator();
+// const Stack = createNativeStackNavigator();
 export default function App() {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
