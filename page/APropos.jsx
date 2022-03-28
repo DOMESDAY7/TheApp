@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image } from "react-native";
 import { useEffect, useState, useCallback } from "react";
+import HeaderApp from "../components/headerApp";
 
 function APropos() {
   const [dev, setdev] = useState([]);
@@ -65,6 +66,7 @@ function APropos() {
   // };
   return (
     <SafeAreaView style = {styles.container}>
+      <HeaderApp/>
       <Text style = {styles.header}></Text>
       <Text style = {styles.titre}>A propos du salon</Text>
       <Text style = {styles.intro}>
@@ -107,10 +109,10 @@ const styles= StyleSheet.create({
     padding: 25,
   },
   header:{
-    flex:2,
+    flex:1,
   },
   titre:{
-    flex: 1,
+    flex: 1.5,
     color:"white",
     fontWeight: "bold",
     textAlign:"center",
@@ -128,6 +130,7 @@ const styles= StyleSheet.create({
     // flex:1,
     backgroundColor:"white",
     alignSelf: "flex-start",
+    margin:10,
     padding:10,
     borderRadius:10,
     marginLeft:"auto",
@@ -151,8 +154,8 @@ const styles= StyleSheet.create({
     flex:1,
   },
   tinyLogo: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
   },
 })
 
