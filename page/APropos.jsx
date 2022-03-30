@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Butto
 import { useEffect, useState, useCallback } from "react";
 import MapView from 'react-native-maps';
 import { Dimensions } from 'react-native';
-import Map from "../components/map";
+import Map from "./components/map";
 
 function APropos() {
 const [dev, setdev] = useState([]);
