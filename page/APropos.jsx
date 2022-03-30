@@ -1,13 +1,17 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image, ScrollView } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image, ScrollView } from
+"react-native";
 import { useEffect, useState, useCallback } from "react";
 import MapView from 'react-native-maps';
 import { Dimensions } from 'react-native';
-import Map from "../components/map";
+// import Map from "../components/map";
 
 function APropos() {
 const [dev, setdev] = useState([]);
 const [social, setSocial] = useState([]);
+
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 
 useEffect(() => {
 //dev
@@ -66,12 +70,11 @@ return <TouchableOpacity onPress={handlePress}>
   // <Text>{social.facebook}</Text>
   // </View>;
 // };
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-    
+
+
 return (
 <SafeAreaView style={styles.container}>
-  <Text style = {styles.header}></Text>
+  <Text style={styles.header}></Text>
   <ScrollView contentContainerStyle={{
       // flex: 1,
       justifyContent: 'space-between',
@@ -94,7 +97,15 @@ return (
     <View style={styles.dev}>{dev}</View>
     <Text style={styles.soustitre}>Rejoignez-nous !</Text>
     <OpenURLButton url={supportedURL} style={styles.lien}>Open Supported URL</OpenURLButton>
-    <Map style={styles.map}/>
+    {/* <Map style={styles.map} /> */}
+    <View >
+      <MapView  style={styles.map} initialRegion={{
+      latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }} />
+    </View>
   </ScrollView>
 </SafeAreaView>
 );
@@ -110,9 +121,9 @@ color: "white",
 padding: 25,
 },
 header:{
-  flex: 2,
-  borderColor: "red",
-  borderWidth: 1,
+flex: 2,
+borderColor: "red",
+borderWidth: 1,
 },
 titre:{
 flex: 1,
@@ -160,9 +171,9 @@ width: 50,
 height: 50,
 },
 map:{
-  // Régler problème flex
-  height:"10px",
-  width:"10px",
+// Régler problème flex
+height:500,
+width: 500,
 }
 })
 
