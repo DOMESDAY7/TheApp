@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet,TextInput,TouchableOpacity,Dimensions } from 'react-native';
 import { useState,  } from 'react';
+
 import Submitbtn from '../components/submitBtn';
+
 const Contact = () => {
     const [mail, setMail] = useState("");
     const [message, setMessage] = useState("");
