@@ -1,12 +1,11 @@
 import React from 'react';
 import { TouchableOpacity,Text,StyleSheet } from 'react-native';
 
-//BOUTON D'ENVOI
-//le bouton d'envoi est récurrent sur la page de contact et de rendez-vous
-//il prend deux propriétés possible:text et method
-//text est le texte qui s'affiche sur le bouton
-//method est la méthode qui sera appelée lorsque l'on cliquera sur le bouton
-
+//SEND BUTTON
+//the send button is recurring on the contact and appointments page
+//it takes two possible properties: text and method
+//text is the text displayed on the button
+//method is the method that will be called when the button is clicked
 
 const Submitbtn = (props) => {
     return (

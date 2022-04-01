@@ -12,7 +12,7 @@ import Submitbtn from "../components/submitBtn";
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
-export default function Rdv() {
+export default function Rdv(props) {
   const [nom, setNom] = useState("");
   const [mail, setMail] = useState("");
   const [prestation, setPrestation] = useState("1");
@@ -20,7 +20,8 @@ export default function Rdv() {
   const [prenom, setPrenom] = useState("");
   const [allPrestation, setAllPrestation] = useState([]);
   useEffect(() => {
-    fetch("http://192.168.140.239/apiTheApp/index.php?select=prestations")
+    let renderUrl =props.urlApi+"?select=prestations";
+    fetch(renderUrl)
     .then(resp=>resp.json())
     .then(data=>{
       
@@ -34,7 +35,6 @@ export default function Rdv() {
   }, []);
 
   function handleSubmit() {
-    // const { windowH, windowW } = useWindowDimensions();
     console.log("sub")
     let obj = {
       prenom: prenom,
@@ -43,7 +43,7 @@ export default function Rdv() {
       demande: demande,
       mail: mail
     };
-    let url = "http://192.168.140.239/apiTheApp/index.php?send=rdv";
+    let url = props.urlApi+"send=rdv";
     fetch(url, {
       headers: {
         "Content-Type": "application/json",

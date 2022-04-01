@@ -10,11 +10,13 @@ import Feather from 'react-native-vector-icons/Feather';
 import Accueil from "./page/accueil";
 import Rdv from "./page/rdv";
 import APropos from "./page/APropos";
-
+import Contact from "./page/contact";
+//The App component passes to all components that display the api url
 // const Stack = createNativeStackNavigator();
 export default function App() {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
+  const urlApi = "http://localhost/apiTheApp/index.php";
   return (
     <NavigationContainer>
       {/* The different routes */}
@@ -34,7 +36,8 @@ export default function App() {
           ),
           headerShown:false
         }}/>
-        <Tab.Screen name="RDV" component={Rdv} 
+        <Tab.Screen name="RDV" 
+        children={() => <Rdv urlApi={urlApi}/>}
         options={{
           tabBarLabel: "RDV",
           tabBarShowLabel: false,
@@ -54,6 +57,7 @@ export default function App() {
         }}/>
       </Tab.Navigator>
     </NavigationContainer>
+   
   );
 }
 

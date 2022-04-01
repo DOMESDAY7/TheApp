@@ -79,7 +79,7 @@ function APropos() {
         spectaculaires en matière de traitement et de coloration, aussi bien
         pour les femmes que pour les hommes.
       </Text>
-      <TouchableOpacity style = {styles.contact} onPress={navigate('Contact')}>
+      <TouchableOpacity style = {styles.contact} >
         <Text>Contactez-nous</Text>
       </TouchableOpacity>
       <Text style = {styles.soustitre}>L'équipe de développeurs</Text>
