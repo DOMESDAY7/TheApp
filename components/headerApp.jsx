@@ -1,6 +1,9 @@
 import React from "react";
 import { View, StyleSheet, Dimensions,Image,Text } from "react-native";
 
+//le header est récurrent sur toutes les pages
+//il ne prend aucune propriété car il est composé d'éléments statiques
+
 export default function HeaderApp() {
   return (
     <View style={styles.contain_header}>
@@ -12,7 +15,6 @@ export default function HeaderApp() {
   );
 }
 const windowW = Dimensions.get("window").width;
-// const windowH = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   contain_header:{

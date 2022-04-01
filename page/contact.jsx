@@ -1,18 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet,TextInput,TouchableOpacity,Dimensions } from 'react-native';
 import { useState,  } from 'react';
+import Submitbtn from '../components/submitBtn';
 const Contact = () => {
     const [mail, setMail] = useState("");
     const [message, setMessage] = useState("");
+    function handleSubmit(){
+        console.log("sub")
+    }
     return (
         <View style={styles.containerContact}>
             <Text style={styles.titleContact}>Contactez-nous</Text>
             <TextInput value={mail} onChangeText={setMail} style={styles.inputMail} />
             <TextInput value={message} onChangeText={setMessage} style={styles.inputMessage}/>
             <View style={styles.containerSubBtn}>
-                <TouchableOpacity sytle={styles.subBtn}>
-                    <Text style={styles.textSubBtn}>Envoyer</Text>
-                </TouchableOpacity>
+                <Submitbtn text="Envoyer" method={()=>{handleSubmit()}} />
             </View>
         </View>
     );

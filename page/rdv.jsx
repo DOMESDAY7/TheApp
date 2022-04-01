@@ -8,6 +8,7 @@ import { useEffect } from "react/cjs/react.development";
 import { useState } from "react";
 import { Root, Popup } from 'react-native-popup-confirm-toast'
 import HeaderApp from "../components/headerApp";
+import Submitbtn from "../components/submitBtn";
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
@@ -98,9 +99,7 @@ export default function Rdv() {
       />
 
       <View style={styles.containerSubBtn}>
-        <TouchableOpacity style={styles.subBtn} onPress={()=>{handleSubmit()}}>
-          <Text>Envoyer</Text>
-        </TouchableOpacity>
+        <Submitbtn text="Envoyer" method={()=>{handleSubmit()}} />
       </View>
       <Root>
     <View>
@@ -135,14 +134,7 @@ const styles = StyleSheet.create({
     color: "white",
     marginVertical: "5%",
   },
-  subBtn: {
-    borderWidth: 1,
-    backgroundColor: "white",
-    paddingHorizontal: 30,
-    paddingVertical: 15,
-    borderRadius: 10,
-    fontSize: 70,
-  },
+  
   container: {
     // flex: 1,
     alignItems: "center",

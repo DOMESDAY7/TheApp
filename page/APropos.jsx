@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image } from "react-native";
 import { useEffect, useState, useCallback } from "react";
 import HeaderApp from "../components/headerApp";
+import { NavigationContainer } from "@react-navigation/native";
 
 function APropos() {
   const [dev, setdev] = useState([]);
@@ -78,7 +79,7 @@ function APropos() {
         spectaculaires en matière de traitement et de coloration, aussi bien
         pour les femmes que pour les hommes.
       </Text>
-      <TouchableOpacity style = {styles.contact}>
+      <TouchableOpacity style = {styles.contact} onPress={navigate('Contact')}>
         <Text>Contactez-nous</Text>
       </TouchableOpacity>
       <Text style = {styles.soustitre}>L'équipe de développeurs</Text>
