@@ -7,6 +7,7 @@ import { useEffect } from "react/cjs/react.development";
 // import { useWindowDimensions } from 'react-native';
 import { useState } from "react";
 import { Root, Popup } from 'react-native-popup-confirm-toast'
+import HeaderApp from "../components/headerApp";
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
@@ -56,6 +57,7 @@ export default function Rdv() {
   }
   return (
     <View style={styles.containerForm}>
+      <HeaderApp/>
       <Text style={styles.title}>Bienvenue chez I.C.O.N !</Text>
       <TextInput
         value={nom}
@@ -125,10 +127,10 @@ export default function Rdv() {
 const globalColor = "#111111";
 const styles = StyleSheet.create({
   containerSubBtn: {
-    flex: 5,
+    flex: 1,
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: "bold",
     color: "white",
     marginVertical: "5%",
@@ -142,36 +144,38 @@ const styles = StyleSheet.create({
     fontSize: 70,
   },
   container: {
-    flex: 1,
+    // flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    height:windowH,
+    height: windowH,
     width: windowW,
   },
   input: {
-    flex: 1,
+    // flex: 1,
     borderRadius: 10,
     backgroundColor: "white",
-    padding: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
     marginBottom: 10,
-    width: "80%",
+    width: "70%",
     textAlign: "center",
     fontSize: 15,
     borderWidth: 1,
   },
   textarea: {
-    flex: 5,
+    flex: 2.5,
     borderWidth: 1,
-    width: "80%",
+    width: "70%",
     borderRadius: 10,
     marginBottom: 10,
     backgroundColor: "white",
-    padding: 10,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
   },
   containerForm: {
     backgroundColor: globalColor,
-    flex: 8,
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
     width: windowW,

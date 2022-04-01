@@ -2,32 +2,58 @@ import React from "react";
 
 import { Text, View, Image } from "react-native";
 import { SafeAreaView, StyleSheet, Dimensions } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-import Constants from "expo-constants";
-import Header from "./components/header";
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Feather from 'react-native-vector-icons/Feather';
 import Accueil from "./page/accueil";
 import Rdv from "./page/rdv";
-import Contact from "./page/contact";
+import APropos from "./page/APropos";
 
 // const Stack = createNativeStackNavigator();
 export default function App() {
   const Stack = createNativeStackNavigator();
+  const Tab = createBottomTabNavigator();
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator
-    //     screenOptions={{
-    //       headerShown: false,
-    //     }}
-    //     style={styles.container}
-    //   >
-    //     <Stack.Screen name="accueil" component={Accueil} />
-    //     <Stack.Screen name="rdv" component={Rdv} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-    <Contact />
+    <NavigationContainer>
+      {/* The different routes */}
+      <Tab.Navigator 
+      initialRouteName="Accueil"
+      screenOptions={{
+        tabBarActiveBackgroundColor: '#000',
+        tabBarInactiveBackgroundColor: '#000'
+      }}>
+        {/* Buttons of menu */}
+        <Tab.Screen name="Accueil" component={Accueil} 
+        options={{
+          tabBarLabel: "Accueil",
+          tabBarShowLabel: false,
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="home" color="#fff" size={size*1.5} />
+          ),
+          headerShown:false
+        }}/>
+        <Tab.Screen name="RDV" component={Rdv} 
+        options={{
+          tabBarLabel: "RDV",
+          tabBarShowLabel: false,
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="calendar" color="#fff" size={size*1.3}/>
+          ),
+          headerShown:false
+        }}/>
+        <Tab.Screen name="A propos" component={APropos} 
+        options={{
+          tabBarLabel: "A propos",
+          tabBarShowLabel: false,
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="information-outline" color="#fff" size={size*1.5} />
+          ),
+          headerShown:false
+        }}/>
+      </Tab.Navigator>
+    </NavigationContainer>
   );
 }
 
@@ -42,4 +68,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderWidth: 1,
   },
+  tabBar: {
+    backgroundColor: "#fff"
+  }
 });
