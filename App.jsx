@@ -10,22 +10,24 @@ import Constants from "expo-constants";
 import Header from "./components/header";
 import Accueil from "./page/accueil";
 import Rdv from "./page/rdv";
+import Contact from "./page/contact";
 
 // const Stack = createNativeStackNavigator();
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        style={styles.container}
-      >
-        <Stack.Screen name="accueil" component={Accueil} />
-        <Stack.Screen name="rdv" component={Rdv} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <Stack.Navigator
+    //     screenOptions={{
+    //       headerShown: false,
+    //     }}
+    //     style={styles.container}
+    //   >
+    //     <Stack.Screen name="accueil" component={Accueil} />
+    //     <Stack.Screen name="rdv" component={Rdv} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    <Contact />
   );
 }
 

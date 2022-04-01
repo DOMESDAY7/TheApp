@@ -24,16 +24,19 @@ const windowHeight = Dimensions.get('window').height;
 const styles=StyleSheet.create({
     containerSubBtn:{
         flex:5,
+        
     },  
     textSubBtn:{
-        color:"black",
+        color:"white",
     },
     subBtn:{
         borderRadius:10,
         backgroundColor:"white",
-        paddingVertical:10,
-        paddingHorizontal:20,
-        flex:1,
+        // paddingVertical:10,
+        // paddingHorizontal:20,
+        // flex:1,
+        width:windowWidth/2,
+        height:windowHeight/10,
     },
     titleContact:{
         fontSize:50,
