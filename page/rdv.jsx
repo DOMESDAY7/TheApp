@@ -9,28 +9,36 @@ import { useState } from "react";
 import { Root, Popup } from 'react-native-popup-confirm-toast'
 import HeaderApp from "../components/headerApp";
 import Submitbtn from "../components/submitBtn";
+import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
+import AppLoading from 'expo-app-loading';
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
+
 export default function Rdv() {
+  
+  let [fontsLoaded] = useFonts({
+    Montserrat_700Bold,
+    Montserrat_400Regular
+  });
+
   const [nom, setNom] = useState("");
   const [mail, setMail] = useState("");
   const [prestation, setPrestation] = useState("1");
   const [demande, setDemande] = useState("");
   const [prenom, setPrenom] = useState("");
   const [allPrestation, setAllPrestation] = useState([]);
+
   useEffect(() => {
     fetch("http://192.168.140.239/apiTheApp/index.php?select=prestations")
     .then(resp=>resp.json())
     .then(data=>{
       
       setAllPrestation(data.map((prestation)=>{
-        return <Picker.Item label={prestation.prest_nom} value={prestation.id_prestation} />
+        return <Picker.Item label={prestation.prest_nom} value={prestation.id_prestation}/>
       }))
     
     })
-    
-    
   }, []);
 
   function handleSubmit() {
@@ -56,6 +64,10 @@ export default function Rdv() {
       })
       .catch((e) => console.log(e));
   }
+  
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }else{
   return (
     <View style={styles.containerForm}>
       <HeaderApp/>
@@ -76,7 +88,7 @@ export default function Rdv() {
         value={mail}
         onChangeText={setMail}
         style={styles.input}
-        placeholder="mail"
+        placeholder="Email"
       />
 
       <Picker
@@ -98,9 +110,12 @@ export default function Rdv() {
         numberOfLines={4}
       />
 
-      <View style={styles.containerSubBtn}>
-        <Submitbtn text="Envoyer" method={()=>{handleSubmit()}} />
-      </View>
+      {/* <View style={styles.containerSubBtn}> */}
+        {/* <Submitbtn text="Envoyer" method={()=>{handleSubmit()}} style={styles.texte}/> */}
+        <TouchableOpacity style={styles.containerSubBtn} onPress={()=>{handleSubmit()}}>
+          <Text style = {styles.btn}>Envoyer</Text>
+        </TouchableOpacity>
+      {/* </View> */}
       <Root>
     <View>
         <TouchableOpacity
@@ -114,7 +129,7 @@ export default function Rdv() {
               })
             }
         >
-            <Text>Open Popup Message</Text>
+            <Text style={styles.texte}>Open Popup Message</Text>
         </TouchableOpacity>
     </View>
 </Root>
@@ -122,20 +137,23 @@ export default function Rdv() {
     </View>
     
   );
-}
+}}
 const globalColor = "#111111";
 const styles = StyleSheet.create({
   containerSubBtn: {
     flex: 1,
+    backgroundColor: globalColor
   },
   title: {
+    fontFamily: 'Montserrat_700Bold',
     fontSize: 25,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     color: "white",
     marginVertical: "5%",
   },
   
   container: {
+    fontFamily: 'Montserrat_400Regular',
     // flex: 1,
     alignItems: "center",
     justifyContent: "center",
@@ -154,6 +172,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
     borderWidth: 1,
+    fontFamily: 'Montserrat_400Regular'
   },
   textarea: {
     flex: 2.5,
@@ -164,6 +183,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingVertical: 5,
     paddingHorizontal: 10,
+    fontFamily: 'Montserrat_400Regular',
   },
   containerForm: {
     backgroundColor: globalColor,
@@ -172,4 +192,15 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: windowW,
   },
+  texte: {
+    fontFamily: 'Montserrat_400Regular'
+  },
+  btn: {
+    fontFamily: 'Montserrat_400Regular',
+    color: "#000",
+    borderRadius: 10,
+    backgroundColor: "white",
+    paddingVertical: 15,
+    paddingHorizontal: 35,
+  }
 });

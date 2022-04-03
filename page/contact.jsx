@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet,TextInput,TouchableOpacity,Dimensions } from 'react-native';
 import { useState,  } from 'react';
+import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
+import AppLoading from 'expo-app-loading';
 
 import Submitbtn from '../components/submitBtn';
 
@@ -10,16 +12,29 @@ const Contact = () => {
     function handleSubmit(){
         console.log("sub")
     }
-    return (
-        <View style={styles.containerContact}>
-            <Text style={styles.titleContact}>Contactez-nous</Text>
-            <TextInput value={mail} onChangeText={setMail} style={styles.inputMail} />
-            <TextInput value={message} onChangeText={setMessage} style={styles.inputMessage}/>
-            <View style={styles.containerSubBtn}>
-                <Submitbtn text="Envoyer" method={()=>{handleSubmit()}} />
+    
+    let [fontsLoaded] = useFonts({
+        Montserrat_700Bold,
+        Montserrat_400Regular
+    });
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    }else{    
+        return (
+            <View style={styles.containerContact}>
+                <Text style={styles.titleContact}>Contactez-nous</Text>
+                <TextInput value={mail} onChangeText={setMail} style={styles.inputMail} />
+                <TextInput value={message} onChangeText={setMessage} style={styles.inputMessage}/>
+
+                <View style={styles.containerSubBtn}>
+                    <TouchableOpacity onPress={()=>{handleSubmit()}}>
+                        <Text style={styles.btn}>Envoyer</Text>
+                    </TouchableOpacity>
+                    {/* <Submitbtn text="Envoyer" method={()=>{handleSubmit()}} /> */}
+                </View>
             </View>
-        </View>
-    );
+        )
+    }
 }
 
 export default Contact;
@@ -43,6 +58,7 @@ const styles=StyleSheet.create({
         height:windowHeight/10,
     },
     titleContact:{
+        fontFamily: 'Montserrat_700Bold',
         fontSize:50,
         textAlign:"center",
         alignItems:"center",
@@ -72,5 +88,9 @@ const styles=StyleSheet.create({
         flex:1,
         alignItems:"center",
         justifyContent:"center",
+        fontFamily: 'Montserrat_400Regular'
+    },
+    btn:{
+        fontFamily: 'Montserrat_400Regular'
     }
 })

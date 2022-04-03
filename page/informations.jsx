@@ -3,6 +3,9 @@ import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Butto
 import { useEffect, useState, useCallback } from "react";
 import HeaderApp from "../components/headerApp";
 import Contact from "./contact";
+import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
+import AppLoading from 'expo-app-loading';
+import { ScrollView } from "react-native";
 
 // const ButtonContact =({navigation}) =>{
 //   return (
@@ -38,6 +41,10 @@ function Informations({navigation}) {
   const [dev, setdev] = useState([]);
   const [social, setSocial] = useState([]);
 
+  let [fontsLoaded] = useFonts({
+    Montserrat_700Bold,
+    Montserrat_400Regular
+  });
   useEffect(() => {
     //dev
     fetch("http://172.24.140.219/apiTheApp/index.php?select=equipe_dev")
@@ -67,66 +74,71 @@ function Informations({navigation}) {
 
   const supportedURL = "https://www.facebook.com/lesaloniconparis";
 
-  return (
-    <SafeAreaView style = {styles.container}>
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }else{
+    return (
+      <SafeAreaView style = {styles.container}>
       <HeaderApp/>
-      <Text style = {styles.header}></Text>
-      <Text style = {styles.titre}>A propos du salon</Text>
-      <Text style = {styles.intro}>
-        Dans une ambiance chaleureuse, aux pierres et briques apparentes, nous
-        vous accueillons pour un pur moment de relaxation, et de détente.
-      </Text>
-      <Text style = {styles.intro}>
-        Grâce à la technologie I.C.O.N., nous garantissons des résultats
-        spectaculaires en matière de traitement et de coloration, aussi bien
-        pour les femmes que pour les hommes.
-      </Text>
-      <TouchableOpacity style = {styles.contact} onPress={()=>navigation.navigate(Contact)}>
-      <Text>Contactez-nous</Text>
-      </TouchableOpacity>
-      <Text style = {styles.soustitre}>L'équipe de développeurs</Text>
-      <View style = {styles.dev}>{dev}</View>
-      {/* <FlatList
-        data={dev}
-        renderItem={oneDev}
-        keyExtractor={(dev) => dev.id_dev}
-      /> */}
-      <Text style = {styles.soustitre}>Rejoignez-nous !</Text>
-      
-      <OpenURLButton url={supportedURL} style={styles.lien}>Open Supported URL</OpenURLButton>
-
-      {/* <FlatList
-            data={social}
-            renderItem={oneSocialMedia}
-            keyExtractor={social => social.id_salon}
-        /> */}
-    </SafeAreaView>
-  );
-}
+      <ScrollView style = {styles.scroll}>
+        {/* <Text style = {styles.header}></Text> */}
+        <Text style = {styles.titre}>A propos du salon</Text>
+        <Text style = {styles.intro}>
+          Dans une ambiance chaleureuse, aux pierres et briques apparentes, nous
+          vous accueillons pour un pur moment de relaxation, et de détente.
+        </Text>
+        <Text style = {styles.intro}>
+          Grâce à la technologie I.C.O.N., nous garantissons des résultats
+          spectaculaires en matière de traitement et de coloration, aussi bien
+          pour les femmes que pour les hommes.
+        </Text>
+        <TouchableOpacity style = {styles.contact} onPress={()=>navigation.navigate(Contact)}>
+        <Text style = {styles.btn}>Contactez-nous</Text>
+        </TouchableOpacity>
+        <Text style = {styles.soustitre}>L'équipe de développeurs</Text>
+        {/* <View style = {styles.dev}>{dev}</View> */}
+        <View style={styles.dev}>
+          <Text style={styles.devinfo}>Prenom - Nom - Github</Text>
+          <Text style={styles.devinfo}>Prenom - Nom - Github</Text>
+          <Text style={styles.devinfo}>Prenom - Nom - Github</Text>
+        </View>
+        <Text style = {styles.soustitre}>Rejoignez-nous !</Text>
+        <OpenURLButton url={supportedURL} style={styles.lien}>Open Supported URL</OpenURLButton>
+        </ScrollView>
+      </SafeAreaView>
+    )
+  }
+} 
 const styles= StyleSheet.create({
+  scroll:{
+    backgroundColor: "#111111",
+    paddingHorizontal: 25,
+  },
   container:{
-    flex: 1,
+    fontFamily: 'Montserrat_400Regular',
+    // flex: 1,
+    height: '100%',
     backgroundColor: "black",
     color: "white",
-    padding: 25,
-  },
-  header:{
-    flex:1,
   },
   titre:{
-    flex: 1.5,
+    fontFamily: 'Montserrat_700Bold',
+    // flex: 1.5,
     color:"white",
-    fontWeight: "bold",
+    // fontWeight: "bold",
     textAlign:"center",
     fontSize:22,
+    marginVertical: 30
   },
   intro:{
-    flex:2,
+    // flex:2,
     color:"white",
     textAlign: "center",
     marginLeft:"auto",
     marginRight:"auto",
     fontSize:16,
+    fontFamily: 'Montserrat_400Regular',
+    marginVertical: 10
   },
   contact:{
     // flex:1,
@@ -139,26 +151,38 @@ const styles= StyleSheet.create({
     marginRight:"auto",
   },
   soustitre:{
-    flex:1,
+    // flex:1,
     color:"white",
-    fontSize: 18,
-    fontWeight:"bold",
-    marginTop: 30,
+    fontSize: 20,
+    marginTop: 20,
+    fontFamily: 'Montserrat_400Regular',
   },
   dev:{
-    flex:1,
+    // flex:1,
+    fontFamily: 'Montserrat_400Regular',
+    marginVertical: 5
   },
   devinfo:{
     // flex:1,
     color:"white",
+    fontFamily: 'Montserrat_400Regular',
   },
-  lien:{
-    flex:1,
-  },
+  // lien:{
+  //   flex:1,
+  // },
   tinyLogo: {
-    width: 40,
-    height: 40,
+    marginTop: 10,
+    width: 35,
+    height: 35,
   },
+  btn:{
+    fontFamily: 'Montserrat_400Regular',
+    paddingHorizontal: 10,
+    paddingVertical: 3
+  },
+  // header:{
+  //   flex: 2
+  // }
 })
 
 export default Informations;

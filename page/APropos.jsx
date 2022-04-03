@@ -7,12 +7,10 @@ const Stack = createNativeStackNavigator();
 
 function APropos(){
   return (
-    // <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Informations" component={Informations}/>
         <Stack.Screen name="Contact" component={Contact} />
       </Stack.Navigator>
-    // </NavigationContainer>
   );
 };
 
