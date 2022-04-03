@@ -2,9 +2,8 @@ import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image, ScrollView } from
 "react-native";
 import { useEffect, useState, useCallback } from "react";
-import MapView from 'react-native-maps';
 import { Dimensions } from 'react-native';
-// import Map from "../components/map";
+import Map from "../components/map";
 
 function APropos() {
 const [dev, setdev] = useState([]);
@@ -15,7 +14,7 @@ const windowWidth = Dimensions.get('window').width;
 
 useEffect(() => {
 //dev
-fetch("http://172.24.140.219/apiTheApp/index.php?select=equipe_dev")
+fetch("http://192.168.1.49/apiTheApp/index.php?select=equipe_dev")
 .then((resp) => resp.json())
 .then((data) => {
 // console.log(data);
@@ -29,7 +28,7 @@ return <View>
 });
 
 //salon
-fetch("http://172.24.140.219/apiTheApp/index.php?select=salon")
+fetch("http://192.168.1.49/apiTheApp/index.php?select=salon")
 .then((resp) => resp.json())
 .then((data) => {
 setSocial(data);
@@ -37,13 +36,6 @@ console.log(data);
 });
 
 }, []);
-// const oneDev = (dev) => {
-// <View>
-  // <Text>{dev.dev_prenom}</Text>
-  // <Text>{dev.dev_nom}</Text>
-  // <Text>{dev.dev_github}</Text>
-  // </View>;
-// };
 
 const supportedURL = "https://www.facebook.com/lesaloniconparis";
 const OpenURLButton = ({ url, children }) => {
@@ -65,20 +57,13 @@ return <TouchableOpacity onPress={handlePress}>
     source={{uri:'https://www.meilleure-innovation.com/wp-content/uploads/2021/11/1200px-facebook-logo-2019-1024x1024.png'}} />
 </TouchableOpacity>;
 };
-// const oneSocialMedia = (social) => {
-// <View>
-  // <Text>{social.facebook}</Text>
-  // </View>;
-// };
-
 
 return (
 <SafeAreaView style={styles.container}>
   <Text style={styles.header}></Text>
   <ScrollView contentContainerStyle={{
-      // flex: 1,
       justifyContent: 'space-between',
-      height: windowHeight,
+      // height: windowHeight,
   }}>
     <Text style={styles.titre}>A propos du salon</Text>
     <Text style={styles.intro}>
@@ -95,17 +80,10 @@ return (
     </TouchableOpacity>
     <Text style={styles.soustitre}>L'équipe de développeurs</Text>
     <View style={styles.dev}>{dev}</View>
+    <Text style={styles.soustitre}>D'où vennons nous</Text>
+    <Map style={styles.map} />
     <Text style={styles.soustitre}>Rejoignez-nous !</Text>
     <OpenURLButton url={supportedURL} style={styles.lien}>Open Supported URL</OpenURLButton>
-    {/* <Map style={styles.map} /> */}
-    <View >
-      <MapView  style={styles.map} initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }} />
-    </View>
   </ScrollView>
 </SafeAreaView>
 );
@@ -113,68 +91,60 @@ return (
 
 const styles= StyleSheet.create({
 container:{
-flex: 1,
-alignItems: "center",
-justifyContent: "center",
 backgroundColor: "black",
 color: "white",
 padding: 25,
 },
 header:{
-flex: 2,
 borderColor: "red",
 borderWidth: 1,
 },
 titre:{
-flex: 1,
 color:"white",
 fontWeight: "bold",
 textAlign:"center",
 fontSize:22,
+marginBottom: 20,
+marginTop: 15,
 },
 intro:{
-flex:2,
 color:"white",
 textAlign: "center",
 marginLeft:"auto",
 marginRight:"auto",
 fontSize:16,
+marginBottom: 15,
 },
 contact:{
-// flex:1,
 backgroundColor:"white",
 alignSelf: "flex-start",
 padding:10,
 borderRadius:10,
 marginLeft:"auto",
 marginRight:"auto",
+marginTop: 20,
+// marginBottom: 20,
 },
 soustitre:{
-flex:1,
 color:"white",
 fontSize: 18,
 fontWeight:"bold",
 marginTop: 30,
+marginBottom: 10,
 },
 dev:{
-flex:1,
+// flex:1,
 },
 devinfo:{
-// flex:1,
 color:"white",
 },
 lien:{
-flex:1,
+// flex:1,
 },
 tinyLogo: {
 width: 50,
 height: 50,
 },
-map:{
-// Régler problème flex
-height:500,
-width: 500,
-}
 })
 
 export default APropos;

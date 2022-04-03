@@ -1,40 +1,47 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image, ScrollView } from "react-native";
-import { useEffect, useState, useCallback } from "react";
-import MapView from 'react-native-maps';
-import { Dimensions } from 'react-native';
+import {StyleSheet,View, SafeAreaView,Text} from "react-native";
+import MapView from "react-native-maps";
+import { Marker } from 'react-native-maps';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
-   
-function Map() {
-return (
-<View style={styles.container}>
-    <MapView style={styles.map} initialRegion={{
-        latitude: 37.78825,
-        longitude: -122.4324,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      }} 
-      />
-</View>
-);
+export default class Map extends React.Component {
+    constructor(props){
+        super(props)
+
+        this.state = {
+            markerPosition: {
+                latitude: 48.88990,
+                longitude: 2.32774
+            }
+        }
+    }
+    render(){
+        return ( 
+            <View style = {styles.container}>
+                <MapView style = {styles.map}
+                    initialRegion = {
+                        {
+                            latitude: 48.88990,
+                            longitude: 2.32774,
+                            latitudeDelta: 0,
+                            longitudeDelta: 0.05,
+                        }
+                    }>
+                         <MapView.Marker coordinate={this.state.markerPosition}>
+                    <View style={styles.radius}>
+                        <View style={styles.marker}></View>
+                    </View>
+                </MapView.Marker>
+
+                    </MapView>
+            </View >
+        );
+    }
 }
 
-const styles= StyleSheet.create({
-container:{
-// flex: 1,
-alignItems: "center",
-justifyContent: "center",
-backgroundColor: "black",
-color: "white",
-padding: 25,
-},
-map:{
-    // Régler problème flex
-    height:"10px",
-    width:"10px",
-}
+const styles = StyleSheet.create({
+    map: {
+        // Régler problème flex
+        height: 200,
+        width: 500,
+    }
 })
-
-export default Map;
