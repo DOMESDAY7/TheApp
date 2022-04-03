@@ -8,46 +8,78 @@ import {
   Dimensions,
 } from "react-native";
 import { useState } from "react";
+import {
+  useFonts,
+  Montserrat_700Bold,
+  Montserrat_400Regular,
+} from "@expo-google-fonts/montserrat";
+import AppLoading from "expo-app-loading";
+
 import Submitbtn from "../components/submitBtn";
 import HeaderApp from "../components/headerApp";
-const Contact = (props) => {
+import { Toast } from "react-native-popup-confirm-toast";
+
+const Contact = () => {
   const [mail, setMail] = useState("");
   const [message, setMessage] = useState("");
-  function handleSubmit(url) {
-    let obj={
-        mail:mail,
-        message:message
-    }
-    fetch(props.url,{
-        headers:{
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify(obj),
-        method:"POST"
-
-    }).then(()=>{showPopup()})
-    .catch((e)=>console.log(e))
+  function handleSubmit() {
+    let obj = {
+      mail: mail,
+      message: message,
+    };
+    fetch(props.urlApi + "?send=contact", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(obj),
+    }).then(() => {
+      Toast.show({
+        title: "Message envoyé!",
+        text: "On vous répondra sous peu",
+        color: "#111111",
+        timeColor: "#fff",
+        timing: 5000,
+        backgroundColor: "#000000",
+        position: "bottom",
+      });
+    });
   }
-  return (
-    <View style={styles.containerContact}>
+
+  let [fontsLoaded] = useFonts({
+    Montserrat_700Bold,
+    Montserrat_400Regular,
+  });
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  } else {
+    return (
+      <View style={styles.containerContact}>
         <HeaderApp />
-      <Text style={styles.titleContact}>Contactez-nous</Text>
-      <TextInput value={mail} onChangeText={setMail} style={styles.inputMail} />
-      <TextInput
-        value={message}
-        onChangeText={setMessage}
-        style={styles.inputMessage}
-      />
-      <View style={styles.containerSubBtn}>
-        <Submitbtn
-          text="Envoyer"
-          method={() => {
-            handleSubmit(props.url);
-          }}
-        />
+        <View style={styles.main}>
+          <Text style={styles.titleContact}>Contactez-nous</Text>
+          <TextInput
+            placeholder="Email"
+            onChangeText={setMail}
+            style={styles.inputMail}
+          />
+          <TextInput
+            placeholder="Votre Message"
+            onChangeText={setMessage}
+            style={styles.inputMessage}
+          />
+          <View style={styles.containerSubBtn}>
+            <Submitbtn
+              text="Envoyer"
+              method={() => {
+                handleSubmit();
+              }}
+            />
+          </View>
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
 };
 
 export default Contact;
@@ -55,7 +87,7 @@ const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 const styles = StyleSheet.create({
   containerSubBtn: {
-    flex: 5,
+    // flex:5,
   },
   textSubBtn: {
     color: "white",
@@ -63,42 +95,55 @@ const styles = StyleSheet.create({
   subBtn: {
     borderRadius: 10,
     backgroundColor: "white",
-    // paddingVertical:10,
-    // paddingHorizontal:20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     // flex:1,
     width: windowWidth / 2,
-    height: windowHeight / 10,
+    // height:windowHeight/10,
   },
   titleContact: {
-    fontSize: 50,
+    fontFamily: "Montserrat_400Regular",
+    // flex: 1.5,
+    color: "white",
+    // fontWeight: "bold",
     textAlign: "center",
-    alignItems: "center",
-    justifyContent: "center",
-    flex: 2,
-    color: "#fff",
+    fontSize: 30,
+    marginVertical: 30,
   },
   inputMail: {
     borderWidth: 1,
-    flex: 1,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    width: (windowWidth * 60) / 100,
-    padding: 5,
-  },
-  inputMessage: {
-    padding: 5,
-    borderWidth: 1,
-    flex: 5,
+    // flex:2,
     height: 50,
     backgroundColor: "#fff",
     borderRadius: 10,
+    width: (windowWidth * 60) / 100,
+    marginVertical: 15,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    fontFamily: "Montserrat_400Regular",
+  },
+  inputMessage: {
+    borderWidth: 1,
+    // flex:4,
+    height: 160,
+    backgroundColor: "#fff",
+    borderRadius: 10,
     width: (windowWidth * 80) / 100,
-    marginVertical: 30,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    marginVertical: 15,
+    fontFamily: "Montserrat_400Regular",
   },
   containerContact: {
     backgroundColor: "#111111",
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+    fontFamily: "Montserrat_400Regular",
+  },
+  main: {
+    flex: 10,
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
 });

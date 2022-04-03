@@ -20,7 +20,7 @@ if(isset($_GET["select"])){
     $data=$req->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($data);
 //
-// ─── GET PRESTATION ─────────────────────────────────────────────────────────────
+// ─── GET PRESTATION FROM CLIENT ─────────────────────────────────────────────────────────────
 //
 }else if(isset($_GET["send"])){
     $send=$_GET["send"];
@@ -37,6 +37,19 @@ if(isset($_GET["select"])){
         $req->bindParam(":mail",$mail,PDO::PARAM_STR);
         $req->bindParam(":prestation",$prestation,PDO::PARAM_INT);
         $req->bindParam(":message",$message,PDO::PARAM_INT);
+        $req->execute();
+//
+// ─── GET MESSAGE FROM CLIENT ─────────────────────────────────────────────────────────────
+//
+    }else if($send=="contact"){
+        //mail et message contiennent les infos envoyer depuis react
+        $mail=htmlspecialchars($data_receive["mail"]);
+        $message=htmlspecialchars($data_receive["message"]);
+        //a revoir
+        $sql = "INSERT INTO `contact` (`id_contact`, `contact_email`, `contact_date`, `contact_message`) VALUES (NULL, :mail, current_timestamp(), :message) ";
+        $req=$db->prepare($sql);
+        $req->bindParam(":mail",$mail,PDO::PARAM_STR);
+        $req->bindParam(":message",$message,PDO::PARAM_STR);
         $req->execute();
     }
 }

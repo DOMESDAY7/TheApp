@@ -10,14 +10,18 @@ import Feather from 'react-native-vector-icons/Feather';
 import Accueil from "./page/accueil";
 import Rdv from "./page/rdv";
 import APropos from "./page/APropos";
+import Informations from "./page/informations";
 import Contact from "./page/contact";
-//The App component passes to all components that display the api url
+import { Root } from "react-native-popup-confirm-toast";
+
 // const Stack = createNativeStackNavigator();
 export default function App() {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
-  const urlApi = "http://localhost/apiTheApp/index.php";
+  //l'url de l'api sans de paramètre en GET
+  const urlApi = "http://192.168.1.193/apiTheApp/index.php";
   return (
+    <Root >
     <NavigationContainer>
       {/* The different routes */}
       <Tab.Navigator 
@@ -57,7 +61,7 @@ export default function App() {
         }}/>
       </Tab.Navigator>
     </NavigationContainer>
-   
+    </Root>
   );
 }
 
