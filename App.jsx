@@ -10,8 +10,9 @@ import Feather from 'react-native-vector-icons/Feather';
 import Accueil from "./page/accueil";
 import Rdv from "./page/rdv";
 import APropos from "./page/APropos";
+import Informations from "./page/informations";
 import Contact from "./page/contact";
-//The App component passes to all components that display the api url
+
 // const Stack = createNativeStackNavigator();
 export default function App() {
   const Stack = createNativeStackNavigator();

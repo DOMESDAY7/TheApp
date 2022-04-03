@@ -9,16 +9,30 @@ import { useState } from "react";
 import { Root, Popup } from 'react-native-popup-confirm-toast'
 import HeaderApp from "../components/headerApp";
 import Submitbtn from "../components/submitBtn";
+import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
+import AppLoading from 'expo-app-loading';
 
 const windowW = Dimensions.get("window").width;
 const windowH = Dimensions.get("window").height;
+<<<<<<< HEAD
 export default function Rdv(props) {
+=======
+
+export default function Rdv() {
+  
+  let [fontsLoaded] = useFonts({
+    Montserrat_700Bold,
+    Montserrat_400Regular
+  });
+
+>>>>>>> font
   const [nom, setNom] = useState("");
   const [mail, setMail] = useState("");
   const [prestation, setPrestation] = useState("1");
   const [demande, setDemande] = useState("");
   const [prenom, setPrenom] = useState("");
   const [allPrestation, setAllPrestation] = useState([]);
+
   useEffect(() => {
     let renderUrl =props.urlApi+"?select=prestations";
     fetch(renderUrl)
@@ -26,12 +40,10 @@ export default function Rdv(props) {
     .then(data=>{
       
       setAllPrestation(data.map((prestation)=>{
-        return <Picker.Item label={prestation.prest_nom} value={prestation.id_prestation} />
+        return <Picker.Item label={prestation.prest_nom} value={prestation.id_prestation}/>
       }))
     
     })
-    
-    
   }, []);
 
   function handleSubmit() {
@@ -56,9 +68,15 @@ export default function Rdv(props) {
       })
       .catch((e) => console.log(e));
   }
+  
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }else{
   return (
     <View style={styles.containerForm}>
       <HeaderApp/>
+      
+      <View style={styles.main}>
       <Text style={styles.title}>Bienvenue chez I.C.O.N !</Text>
       <TextInput
         value={nom}
@@ -76,7 +94,7 @@ export default function Rdv(props) {
         value={mail}
         onChangeText={setMail}
         style={styles.input}
-        placeholder="mail"
+        placeholder="Email"
       />
 
       <Picker
@@ -99,7 +117,7 @@ export default function Rdv(props) {
       />
 
       <View style={styles.containerSubBtn}>
-        <Submitbtn text="Envoyer" method={()=>{handleSubmit()}} />
+        <Submitbtn text="Envoyer" method={()=>{handleSubmit()}}/>
       </View>
       <Root>
     <View>
@@ -114,28 +132,32 @@ export default function Rdv(props) {
               })
             }
         >
-            <Text>Open Popup Message</Text>
+            <Text style={styles.texte}>Open Popup Message</Text>
         </TouchableOpacity>
     </View>
-</Root>
+  </Root>
 
+    </View>
     </View>
     
   );
-}
+}}
 const globalColor = "#111111";
 const styles = StyleSheet.create({
   containerSubBtn: {
     flex: 1,
+    backgroundColor: globalColor
   },
   title: {
+    fontFamily: 'Montserrat_700Bold',
     fontSize: 25,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     color: "white",
     marginVertical: "5%",
   },
   
   container: {
+    fontFamily: 'Montserrat_400Regular',
     // flex: 1,
     alignItems: "center",
     justifyContent: "center",
@@ -154,6 +176,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 15,
     borderWidth: 1,
+    fontFamily: 'Montserrat_400Regular'
   },
   textarea: {
     flex: 2.5,
@@ -164,6 +187,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingVertical: 5,
     paddingHorizontal: 10,
+    fontFamily: 'Montserrat_400Regular',
   },
   containerForm: {
     backgroundColor: globalColor,
@@ -172,4 +196,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: windowW,
   },
+  texte: {
+    fontFamily: 'Montserrat_400Regular'
+  },
+  main:{
+    flex:10,
+    alignItems:"center",
+    width: '100%'
+  }
 });
