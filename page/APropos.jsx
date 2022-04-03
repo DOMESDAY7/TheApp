@@ -1,163 +1,156 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image, ScrollView } from
+"react-native";
 import { useEffect, useState, useCallback } from "react";
+import { Dimensions } from 'react-native';
+import Map from "../components/map";
 import HeaderApp from "../components/headerApp";
-import { NavigationContainer } from "@react-navigation/native";
+
+const windowW = Dimensions.get("window").width;
+const windowHeight = Dimensions.get("window").height;
 
 function APropos() {
-  const [dev, setdev] = useState([]);
-  const [social, setSocial] = useState([]);
+const [dev, setdev] = useState([]);
+const [social, setSocial] = useState([]);
 
-  useEffect(() => {
-    //dev
-    fetch("http://172.24.140.219/apiTheApp/index.php?select=equipe_dev")
-      .then((resp) => resp.json())
-      .then((data) => {
-        // console.log(data);
-        setdev(
-            data.map((dev) => {
-              return <View>
-                  <Text style = {styles.devinfo}> {dev.dev_prenom} - {dev.dev_nom} - {dev.github}</Text>
-              </View>;
-            })
-          );
-      });
+useEffect(() => {
+//dev
+fetch("http://172.24.140.219/apiTheApp/index.php?select=equipe_dev")
+.then((resp) => resp.json())
+.then((data) => {
+// console.log(data);
+setdev(
+data.map((dev) => {
+return <View>
+  <Text style={styles.devinfo}> {dev.dev_prenom} - {dev.dev_nom} - {dev.github}</Text>
+</View>;
+})
+);
+});
 
-    //salon
-    fetch("http://172.24.140.219/apiTheApp/index.php?select=salon")
-      .then((resp) => resp.json())
-      .then((data) => {
-        setSocial(data);
-        console.log(data);
-      });
-    
-  }, []);
-  // const oneDev = (dev) => {
-  //   <View>
-  //     <Text>{dev.dev_prenom}</Text>
-  //     <Text>{dev.dev_nom}</Text>
-  //     <Text>{dev.dev_github}</Text>
-  //   </View>;
-  // };
+//salon
+fetch("http://172.24.140.219/apiTheApp/index.php?select=salon")
+.then((resp) => resp.json())
+.then((data) => {
+setSocial(data);
+console.log(data);
+});
 
-  const supportedURL = "https://www.facebook.com/lesaloniconparis";
-  const OpenURLButton = ({ url, children }) => {
-    const handlePress = useCallback(async () => {
-      // Checking if the link is supported for links with custom URL scheme.
-      const supported = await Linking.canOpenURL(url);
-  
-      if (supported) {
-        // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-        // by some browser in the mobile
-        await Linking.openURL(url);
-      } else {
-        Alert.alert(`Don't know how to open this URL: ${url}`);
-      }
-    }, [url]);
-  
-    return <TouchableOpacity onPress={handlePress}>
-      <Image style={styles.tinyLogo}
-      source={{uri:'https://www.meilleure-innovation.com/wp-content/uploads/2021/11/1200px-facebook-logo-2019-1024x1024.png'}}/>
-    </TouchableOpacity>;
-  };
-  // const oneSocialMedia = (social) => {
-  //   <View>
-  //     <Text>{social.facebook}</Text>
-  //   </View>;
-  // };
-  return (
-    <SafeAreaView style = {styles.container}>
-      <HeaderApp/>
-      <Text style = {styles.header}></Text>
-      <Text style = {styles.titre}>A propos du salon</Text>
-      <Text style = {styles.intro}>
-        Dans une ambiance chaleureuse, aux pierres et briques apparentes, nous
-        vous accueillons pour un pur moment de relaxation, et de détente.
-      </Text>
-      <Text style = {styles.intro}>
-        Grâce à la technologie I.C.O.N., nous garantissons des résultats
-        spectaculaires en matière de traitement et de coloration, aussi bien
-        pour les femmes que pour les hommes.
-      </Text>
-      <TouchableOpacity style = {styles.contact} >
-        <Text>Contactez-nous</Text>
-      </TouchableOpacity>
-      <Text style = {styles.soustitre}>L'équipe de développeurs</Text>
-      <View style = {styles.dev}>{dev}</View>
-      {/* <FlatList
-        data={dev}
-        renderItem={oneDev}
-        keyExtractor={(dev) => dev.id_dev}
-      /> */}
-      <Text style = {styles.soustitre}>Rejoignez-nous !</Text>
-      
-      <OpenURLButton url={supportedURL} style={styles.lien}>Open Supported URL</OpenURLButton>
+}, []);
 
-      {/* <FlatList
-            data={social}
-            renderItem={oneSocialMedia}
-            keyExtractor={social => social.id_salon}
-        /> */}
+const supportedURL = "https://www.facebook.com/lesaloniconparis";
+const OpenURLButton = ({ url, children }) => {
+const handlePress = useCallback(async () => {
+// Checking if the link is supported for links with custom URL scheme.
+const supported = await Linking.canOpenURL(url);
 
-    </SafeAreaView>
-  );
+if (supported) {
+// Opening the link with some app, if the URL scheme is "http" the web link should be opened
+// by some browser in the mobile
+await Linking.openURL(url);
+} else {
+Alert.alert(`Don't know how to open this URL: ${url}`);
 }
+}, [url]);
+
+return <TouchableOpacity onPress={handlePress}>
+  <Image style={styles.tinyLogo}
+    source={{uri:'https://www.meilleure-innovation.com/wp-content/uploads/2021/11/1200px-facebook-logo-2019-1024x1024.png'}} />
+</TouchableOpacity>;
+};
+
+return (
+<SafeAreaView style={styles.container}>
+    <HeaderApp/>
+    <Image style={styles.imageHeader} source={{
+        uri: 'https://cdn1.treatwell.net/images/view/v2.i2500346.w720.h480.x122C1F52/',
+      }} />
+  <ScrollView contentContainerStyle={{
+      justifyContent: 'space-between',
+      height: windowHeight,
+  }}>
+    <Text style={styles.titre}>A propos du salon</Text>
+    <Text style={styles.intro}>
+      Dans une ambiance chaleureuse, aux pierres et briques apparentes, nous
+      vous accueillons pour un pur moment de relaxation, et de détente.
+    </Text>
+    <Text style={styles.intro}>
+      Grâce à la technologie I.C.O.N., nous garantissons des résultats
+      spectaculaires en matière de traitement et de coloration, aussi bien
+      pour les femmes que pour les hommes.
+    </Text>
+    <TouchableOpacity style={styles.contact}>
+      <Text>Contactez-nous</Text>
+    </TouchableOpacity>
+    <Text style={styles.soustitre}>L'équipe de développeurs</Text>
+    <View style={styles.dev}>{dev}</View>
+    <Text style={styles.soustitre}>Rejoignez-nous !</Text>
+    <OpenURLButton url={supportedURL} style={styles.lien}>Open Supported URL</OpenURLButton>
+    <Text style={styles.soustitre}>D'où vennons nous</Text>
+    <Map style={styles.map} />
+  </ScrollView>
+</SafeAreaView>
+);
+}
+
 const styles= StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: "black",
-    color: "white",
-    padding: 25,
+  backgroundColor: "black",
+  color: "white",
+  padding: 25,
   },
-  header:{
-    flex:1,
-  },
+  imageHeader: {
+    flex:2,
+    width: windowW,
+    height: 50,
+},
   titre:{
-    flex: 1.5,
-    color:"white",
-    fontWeight: "bold",
-    textAlign:"center",
-    fontSize:22,
+  color:"white",
+  fontWeight: "bold",
+  textAlign:"center",
+  fontSize:22,
+  marginBottom: 20,
+  marginTop: 15,
   },
   intro:{
-    flex:2,
-    color:"white",
-    textAlign: "center",
-    marginLeft:"auto",
-    marginRight:"auto",
-    fontSize:16,
+  color:"white",
+  textAlign: "center",
+  marginLeft:"auto",
+  marginRight:"auto",
+  fontSize:16,
+  marginBottom: 15,
   },
   contact:{
-    // flex:1,
-    backgroundColor:"white",
-    alignSelf: "flex-start",
-    margin:10,
-    padding:10,
-    borderRadius:10,
-    marginLeft:"auto",
-    marginRight:"auto",
+  backgroundColor:"white",
+  alignSelf: "flex-start",
+  padding:10,
+  borderRadius:10,
+  marginLeft:"auto",
+  marginRight:"auto",
+  marginTop: 20,
+  // marginBottom: 20,
   },
   soustitre:{
-    flex:1,
-    color:"white",
-    fontSize: 18,
-    fontWeight:"bold",
-    marginTop: 30,
+  color:"white",
+  fontSize: 18,
+  fontWeight:"bold",
+  marginTop: 30,
+  marginBottom: 10,
   },
   dev:{
-    flex:1,
+  // flex:1,
   },
   devinfo:{
-    // flex:1,
-    color:"white",
+  color:"white",
   },
   lien:{
-    flex:1,
+  // flex:1,
   },
   tinyLogo: {
-    width: 40,
-    height: 40,
+  width: 50,
+  height: 50,
   },
-})
+  })
 
 export default APropos;
