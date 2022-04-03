@@ -1,11 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image } from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, FlatList, TouchableOpacity, Button, Linking, Image, Dimensions } from "react-native";
 import { useEffect, useState, useCallback } from "react";
 import HeaderApp from "../components/headerApp";
 import Contact from "./contact";
 import { useFonts, Montserrat_700Bold, Montserrat_400Regular } from "@expo-google-fonts/montserrat";
 import AppLoading from 'expo-app-loading';
 import { ScrollView } from "react-native";
+import Map from "../components/map";
 
 // const ButtonContact =({navigation}) =>{
 //   return (
@@ -80,7 +81,10 @@ function Informations({navigation}) {
     return (
       <SafeAreaView style = {styles.container}>
       <HeaderApp/>
-      <ScrollView style = {styles.scroll}>
+      <ScrollView contentContainerStyle={{
+        justifyContent: 'space-between',
+        height: windowHeight,
+      }}>
         {/* <Text style = {styles.header}></Text> */}
         <Text style = {styles.titre}>A propos du salon</Text>
         <Text style = {styles.intro}>
@@ -97,29 +101,27 @@ function Informations({navigation}) {
         </TouchableOpacity>
         <Text style = {styles.soustitre}>L'équipe de développeurs</Text>
         {/* <View style = {styles.dev}>{dev}</View> */}
-        <View style={styles.dev}>
-          <Text style={styles.devinfo}>Prenom - Nom - Github</Text>
-          <Text style={styles.devinfo}>Prenom - Nom - Github</Text>
-          <Text style={styles.devinfo}>Prenom - Nom - Github</Text>
-        </View>
+        <View style={styles.dev}>{dev}</View>
         <Text style = {styles.soustitre}>Rejoignez-nous !</Text>
         <OpenURLButton url={supportedURL} style={styles.lien}>Open Supported URL</OpenURLButton>
+        <Text style={styles.soustitre}>Nous trouver</Text>
+        <Map style={styles.map} />
         </ScrollView>
       </SafeAreaView>
     )
   }
 } 
+
+const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
 const styles= StyleSheet.create({
-  scroll:{
-    backgroundColor: "#111111",
-    paddingHorizontal: 25,
-  },
   container:{
     fontFamily: 'Montserrat_400Regular',
-    // flex: 1,
+    flex: 1,
     height: '100%',
     backgroundColor: "black",
     color: "white",
+    padding: 25,
   },
   titre:{
     fontFamily: 'Montserrat_700Bold',
