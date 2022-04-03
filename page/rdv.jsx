@@ -71,6 +71,8 @@ export default function Rdv() {
   return (
     <View style={styles.containerForm}>
       <HeaderApp/>
+      
+      <View style={styles.main}>
       <Text style={styles.title}>Bienvenue chez I.C.O.N !</Text>
       <TextInput
         value={nom}
@@ -110,12 +112,9 @@ export default function Rdv() {
         numberOfLines={4}
       />
 
-      {/* <View style={styles.containerSubBtn}> */}
-        {/* <Submitbtn text="Envoyer" method={()=>{handleSubmit()}} style={styles.texte}/> */}
-        <TouchableOpacity style={styles.containerSubBtn} onPress={()=>{handleSubmit()}}>
-          <Text style = {styles.btn}>Envoyer</Text>
-        </TouchableOpacity>
-      {/* </View> */}
+      <View style={styles.containerSubBtn}>
+        <Submitbtn text="Envoyer" method={()=>{handleSubmit()}}/>
+      </View>
       <Root>
     <View>
         <TouchableOpacity
@@ -132,8 +131,9 @@ export default function Rdv() {
             <Text style={styles.texte}>Open Popup Message</Text>
         </TouchableOpacity>
     </View>
-</Root>
+  </Root>
 
+    </View>
     </View>
     
   );
@@ -195,12 +195,9 @@ const styles = StyleSheet.create({
   texte: {
     fontFamily: 'Montserrat_400Regular'
   },
-  btn: {
-    fontFamily: 'Montserrat_400Regular',
-    color: "#000",
-    borderRadius: 10,
-    backgroundColor: "white",
-    paddingVertical: 15,
-    paddingHorizontal: 35,
+  main:{
+    flex:10,
+    alignItems:"center",
+    width: '100%'
   }
 });
