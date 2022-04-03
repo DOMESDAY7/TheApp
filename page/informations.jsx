@@ -80,32 +80,32 @@ function Informations({navigation}) {
   }else{
     return (
       <SafeAreaView style = {styles.container}>
-      <HeaderApp/>
-      <ScrollView contentContainerStyle={{
-        justifyContent: 'space-between',
-        height: windowHeight,
-      }}>
-        {/* <Text style = {styles.header}></Text> */}
-        <Text style = {styles.titre}>A propos du salon</Text>
-        <Text style = {styles.intro}>
-          Dans une ambiance chaleureuse, aux pierres et briques apparentes, nous
-          vous accueillons pour un pur moment de relaxation, et de détente.
-        </Text>
-        <Text style = {styles.intro}>
-          Grâce à la technologie I.C.O.N., nous garantissons des résultats
-          spectaculaires en matière de traitement et de coloration, aussi bien
-          pour les femmes que pour les hommes.
-        </Text>
-        <TouchableOpacity style = {styles.contact} onPress={()=>navigation.navigate(Contact)}>
-        <Text style = {styles.btn}>Contactez-nous</Text>
-        </TouchableOpacity>
-        <Text style = {styles.soustitre}>L'équipe de développeurs</Text>
-        {/* <View style = {styles.dev}>{dev}</View> */}
-        <View style={styles.dev}>{dev}</View>
-        <Text style = {styles.soustitre}>Rejoignez-nous !</Text>
-        <OpenURLButton url={supportedURL} style={styles.lien}>Open Supported URL</OpenURLButton>
-        <Text style={styles.soustitre}>Nous trouver</Text>
-        <Map style={styles.map} />
+        <HeaderApp/>        
+        <ScrollView contentContainerStyle={{
+          justifyContent: 'space-between',
+          // height: windowHeight
+        }}>
+          {/* <Text style = {styles.header}></Text> */}
+          <Text style = {styles.titre}>A propos du salon</Text>
+          <Text style = {styles.intro}>
+            Dans une ambiance chaleureuse, aux pierres et briques apparentes, nous
+            vous accueillons pour un pur moment de relaxation, et de détente.
+          </Text>
+          <Text style = {styles.intro}>
+            Grâce à la technologie I.C.O.N., nous garantissons des résultats
+            spectaculaires en matière de traitement et de coloration, aussi bien
+            pour les femmes que pour les hommes.
+          </Text>
+          <TouchableOpacity style = {styles.contact} onPress={()=>navigation.navigate(Contact)}>
+          <Text style = {styles.btn}>Contactez-nous</Text>
+          </TouchableOpacity>
+          <Text style = {styles.soustitre}>L'équipe de développeurs</Text>
+          {/* <View style = {styles.dev}>{dev}</View> */}
+          <View style={styles.dev}>{dev}</View>
+          <Text style = {styles.soustitre}>Rejoignez-nous !</Text>
+          <OpenURLButton url={supportedURL} style={styles.lien}>Open Supported URL</OpenURLButton>
+          <Text style={styles.soustitre}>Nous trouver</Text>
+          <Map style={styles.map} />
         </ScrollView>
       </SafeAreaView>
     )
