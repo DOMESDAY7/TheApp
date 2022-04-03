@@ -87,7 +87,18 @@ export default function Rdv(props) {
           position: "bottom",
         });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => {
+        console.log(e)
+        Toast.show({
+          title: "Rendez-vous non pris 🥲",
+          text: "Une erreur est survenue",
+          color: "#111111",
+          timeColor: "#fff",
+          timing: 5000,
+          backgroundColor: "#000000",
+          position: "bottom",
+        });
+      });
   }
 
   if (!fontsLoaded) {

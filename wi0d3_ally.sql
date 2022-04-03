@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 17 mars 2022 à 15:27
+-- Généré le : dim. 03 avr. 2022 à 23:24
 -- Version du serveur : 10.4.22-MariaDB
--- Version de PHP : 8.1.2
+-- Version de PHP : 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,18 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `wi0d3_ally`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `contact`
+--
+
+CREATE TABLE `contact` (
+  `id_contact` int(11) NOT NULL,
+  `mail` varchar(255) NOT NULL,
+  `message` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -163,6 +175,12 @@ INSERT INTO `salon` (`id`, `name`, `value`) VALUES
 --
 
 --
+-- Index pour la table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`id_contact`);
+
+--
 -- Index pour la table `equipe_dev`
 --
 ALTER TABLE `equipe_dev`
@@ -201,6 +219,12 @@ ALTER TABLE `salon`
 --
 -- AUTO_INCREMENT pour les tables déchargées
 --
+
+--
+-- AUTO_INCREMENT pour la table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `id_contact` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `equipe_dev`

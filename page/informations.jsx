@@ -38,7 +38,7 @@ const OpenURLButton = ({ url, children }) => {
   )
 };
 
-function Informations({navigation}) {
+function Informations({navigation},props) {
   const [dev, setdev] = useState([]);
   const [social, setSocial] = useState([]);
 
@@ -48,7 +48,7 @@ function Informations({navigation}) {
   });
   useEffect(() => {
     //dev
-    fetch("http://172.24.140.219/apiTheApp/index.php?select=equipe_dev")
+    fetch("https://mathieuandry.fr/icon/index.php?select=equipe_dev")
       .then((resp) => resp.json())
       .then((data) => {
         // console.log(data);
@@ -64,7 +64,7 @@ function Informations({navigation}) {
       });
 
     //salon
-    fetch("http://172.24.140.219/apiTheApp/index.php?select=salon")
+    fetch("https://mathieuandry.fr/icon/index.php?select=salon")
       .then((resp) => resp.json())
       .then((data) => {
         setSocial(data);

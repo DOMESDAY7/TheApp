@@ -19,7 +19,7 @@ import Submitbtn from "../components/submitBtn";
 import HeaderApp from "../components/headerApp";
 import { Toast } from "react-native-popup-confirm-toast";
 
-const Contact = () => {
+const Contact = (props) => {
   const [mail, setMail] = useState("");
   const [message, setMessage] = useState("");
   function handleSubmit() {
@@ -36,7 +36,19 @@ const Contact = () => {
     }).then(() => {
       Toast.show({
         title: "Message envoyé!",
-        text: "On vous répondra sous peu",
+        text: "On vous répondra sous peu 😉",
+        color: "#111111",
+        timeColor: "#fff",
+        timing: 5000,
+        backgroundColor: "#000000",
+        position: "bottom",
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      Toast.show({
+        title: "Message non envoyé 🥲",
+        text: "Une erreur est survenue",
         color: "#111111",
         timeColor: "#fff",
         timing: 5000,
@@ -62,6 +74,7 @@ const Contact = () => {
             placeholder="Email"
             onChangeText={setMail}
             style={styles.inputMail}
+           
           />
           <TextInput
             placeholder="Votre Message"

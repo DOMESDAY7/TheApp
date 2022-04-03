@@ -5,11 +5,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
 
-function APropos(){
+function APropos(props){
   return (
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Informations" component={Informations}/>
-        <Stack.Screen name="Contact" component={Contact} />
+        <Stack.Screen name="Informations" >
+        {(props) => <Informations {...props} urlAPi={props.urlApi} />}
+        </Stack.Screen>
+        <Stack.Screen name="Contact" >
+        {(props) => <Contact {...props} urlAPi={props.urlApi} />}
+        </Stack.Screen>
       </Stack.Navigator>
   );
 };

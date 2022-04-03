@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Text, View, Image } from "react-native";
 import { SafeAreaView, StyleSheet, Dimensions } from "react-native";
 import {NavigationContainer} from '@react-navigation/native';
@@ -19,7 +18,7 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   const Tab = createBottomTabNavigator();
   //l'url de l'api sans de paramètre en GET
-  const urlApi = "http://192.168.1.193/apiTheApp/index.php";
+  const urlApi = "https://mathieuandry.fr/icon/index.php";
   return (
     <Root >
     <NavigationContainer>

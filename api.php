@@ -1,7 +1,14 @@
 <?php 
 header('Access-Control-Allow-Origin: *'); //Il faudrait mettre que notre site
 header('Content-Type: application/json');
-$db = new PDO('mysql:host=localhost;dbname=wi0d3_ally', 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"));
+
+//connexion à la base de donnée différente en focntion du serveur
+if($_SERVER['SERVER_NAME']=="localhost"){
+    $db = new PDO('mysql:host=localhost;dbname=wi0d3_ally', 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"));
+}else{
+    $db = new PDO('mysql:host=wi0d3.myd.infomaniak.com;dbname=wi0d3_ally', 'wi0d3_icon', 'J_ASXfnFrT7', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"));
+}
+
 //
 // ─── POST INFORMATION ───────────────────────────────────────────────────────────
 //
