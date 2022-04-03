@@ -12,6 +12,10 @@ import Rdv from "./page/rdv";
 import Accueil from "./components/accueil";
 import APropos from "./page/APropos";
 
+
+import Position from "./components/position";
+
+
 // import { StatusBar } from "expo-status-bar";
 // import Header from "./components/header";
 // import rdv from "./page/rdv";
@@ -28,9 +32,9 @@ export default function App() {
       /> */}
       {/* <Accueil style={styles.accueil}/> */}
 
-      <APropos/>
+      {/* <APropos/> */}
 
-
+      <Position/>
     </View>
   )
 }

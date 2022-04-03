@@ -14,6 +14,10 @@ export default class Map extends React.Component {
             }
         }
     }
+
+
+
+
     render(){
         return ( 
             <View style = {styles.container}>
@@ -26,13 +30,12 @@ export default class Map extends React.Component {
                             longitudeDelta: 0.05,
                         }
                     }>
-                         <MapView.Marker coordinate={this.state.markerPosition}>
-                    <View style={styles.radius}>
-                        <View style={styles.marker}></View>
-                    </View>
-                </MapView.Marker>
-
-                    </MapView>
+                    <MapView.Marker coordinate={this.state.markerPosition}>
+                        <View style={styles.radius}>
+                            <View style={styles.marker}></View>
+                        </View>
+                    </MapView.Marker>
+                </MapView>
             </View >
         );
     }

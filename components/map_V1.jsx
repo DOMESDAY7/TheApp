@@ -14,7 +14,7 @@ export default class Map extends React.Component {
         }
     }
     componentDidMount() {
-        navigator.geaolocation.getCurrentPosition((position) =>{
+        navigator.geolocation.getCurrentPosition((position) =>{
             var lat = parseFloat(position.coords.latitude);
             var lng = parseFloat(position.coords.longitude);
 
