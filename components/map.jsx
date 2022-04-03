@@ -10,6 +10,7 @@ export default function Position() {
         longitude: 2.32774,
     })
 
+    // Popup de demande d'autorisation
     React.useEffect(() => {
         (async () => {
           let { status } = await Location.requestForegroundPermissionsAsync();
@@ -21,6 +22,7 @@ export default function Position() {
           let location = await Location.getCurrentPositionAsync({});
           console.log(location);
 
+        //   Position de l'utilisateur
           setPin({
               latitude: location.coords.latitude,
               longitude: location.coords.longitude,
@@ -30,6 +32,7 @@ export default function Position() {
     
         return ( 
             <View style = {styles.container}>
+                {/* Création de la map */}
                 <MapView style = {styles.map}
                     initialRegion = {
                         {
@@ -40,8 +43,10 @@ export default function Position() {
                         }
                     }
                     showsUserLocation={true}>
+                        {/* Marker de la position du salon */}
                     <Marker 
                     coordinate={{latitude: 48.88990,longitude: 2.32774}}>
+                        {/* Titre qui apparait au clic sur le marker */}
                         <Callout>
                             <Text>Salon ICON Paris</Text>
                         </Callout>
