@@ -14,10 +14,6 @@ export default class Map extends React.Component {
             }
         }
     }
-<<<<<<< HEAD
-    
-=======
->>>>>>> font
     render(){
         return ( 
             <View style = {styles.container}>
