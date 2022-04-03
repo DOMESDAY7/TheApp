@@ -23,7 +23,7 @@ const Submitbtn = (props) => {
     }else{
       return (
           <TouchableOpacity style={styles.subBtn} onPress={props.method}>
-            <Text>{props.text}</Text>
+            <Text style={styles.btn}>{props.text}</Text>
           </TouchableOpacity>
       )
     }
@@ -38,8 +38,10 @@ const styles=StyleSheet.create({
         paddingHorizontal: 30,
         paddingVertical: 15,
         borderRadius: 10,
-        fontSize: 70,
-        fontFamily: 'Montserrat_400Regular',
+        // fontSize: 70,
       },
+    btn:{
+      fontFamily: 'Montserrat_400Regular',
+    }
 });
 export default Submitbtn;
