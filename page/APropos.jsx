@@ -61,7 +61,7 @@ return <TouchableOpacity onPress={handlePress}>
 
 return (
 <SafeAreaView style={styles.container}>
-    <HeaderApp/>
+<HeaderApp/>
     <Image style={styles.imageHeader} source={{
         uri: 'https://cdn1.treatwell.net/images/view/v2.i2500346.w720.h480.x122C1F52/',
       }} />
@@ -95,7 +95,7 @@ return (
 
 const styles= StyleSheet.create({
   container:{
-    flex: 1,
+  flex: 1,
   backgroundColor: "black",
   color: "white",
   padding: 25,
